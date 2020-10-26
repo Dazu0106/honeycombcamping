@@ -23,14 +23,19 @@ public class OnTriggerMap : MonoBehaviour
     {   
         var tilemap = GetComponent<Tilemap>();
         var hitPos = new Vector3Int(0,0,0);
+        
         // 物体がトリガーに接触しとき、１度だけ呼ばれる
          if(collision.CompareTag("Player"))
           
-          hitPos = Vector3Int.CeilToInt(collision.bounds.ClosestPoint(this.transform.position));
-          tilemap.SetTileFlags(hitPos, TileFlags.None);
-          tilemap.SetColor(hitPos, new Color(0.66f, 0.66f, 0.66f,0.66f));
-          //tilemap.SetColor( hitPos, Color.red );
+          hitPos = Vector3Int.RoundToInt(collision.bounds.ClosestPoint(this.transform.position));//当たり判定の最も近い座標を取得してVectorIntに変換
+
+          tilemap.SetTileFlags(hitPos, TileFlags.None);//タイルのフラグをtrueに
+
+          //tilemap.SetColor(hitPos, new Color(1f, 1f, 1f,1f));
+
+          tilemap.SetColor( hitPos, Color.yellow );
           print( tilemap.GetColor( hitPos ) );
+
           print( tilemap.GetTile( hitPos ) );
 
           //Debug.Log("当たった");
