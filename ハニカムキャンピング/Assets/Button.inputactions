@@ -1,0 +1,55 @@
+{
+    "name": "Button",
+    "maps": [
+        {
+            "name": "MoveButton",
+            "id": "31914fb9-801b-46ef-9704-2a183320a764",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "97bd52ef-0b2c-4770-80b6-bf2d1cfefc87",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "35f9e79a-e00e-4b93-ba3f-5e4d2f171366",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd6b7bac-8e0f-4d2f-83ea-b55c02ed2042",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "209eeaf3-a6d7-486a-ba3e-e777e914efa5",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
