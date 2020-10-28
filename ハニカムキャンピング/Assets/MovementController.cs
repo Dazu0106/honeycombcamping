@@ -38,16 +38,16 @@ public class MovementController : MonoBehaviour
         {
             if(movementInput.y > 0)
             {
-                direction = new Vector3(-0.5f,0.5f);
+                direction = new Vector3(-0.4f,0.6f);
             }
 
             else if(movementInput.y < 0)
             {
-                direction = new Vector3(-0.5f,-0.5f);
+                direction = new Vector3(-0.4f,-0.6f);
             }
             else
             {
-                direction = new Vector3(-1,0,0);
+                direction = new Vector3(-0.8f,0,0);
             }
             transform.position += direction;
             UpdatePosition();
@@ -57,15 +57,15 @@ public class MovementController : MonoBehaviour
         {
             if(movementInput.y > 0)
             {
-                direction = new Vector3(0.5f,0.5f);
+                direction = new Vector3(0.4f,0.6f);
             }
             else if(movementInput.y < 0)
             {
-                direction = new Vector3(0.5f,-0.5f);
+                direction = new Vector3(0.4f,-0.6f);
             }
             else
             {
-                direction = new Vector3(1,0,0);
+                direction = new Vector3(0.8f,0,0);
             }
             transform.position += direction;
             UpdatePosition();
