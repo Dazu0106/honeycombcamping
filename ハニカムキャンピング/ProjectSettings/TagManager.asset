@@ -3,12 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
   tags:
   - HexMap
-=======
-  tags: []
->>>>>>> b5e5c0c59c5937df9fe6967da28d2faea4b9c1a8
   layers:
   - Default
   - TransparentFX
@@ -46,12 +42,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-<<<<<<< HEAD
-  - name: back
-    uniqueID: 2860825577
-    locked: 0
   - name: front
-    uniqueID: 2682606681
+    uniqueID: 1475058883
     locked: 0
-=======
->>>>>>> b5e5c0c59c5937df9fe6967da28d2faea4b9c1a8

@@ -7,7 +7,7 @@ public class Server : MonoBehaviour {
     private int count = 0; // click counter
     private WebSocket ws;
     void Start () {
-        var url = "ws://localhost:8080";
+        var url = "ws://172.16.98.82:8080";
         ws = new WebSocket(url);
         ws.Connect();
     }
