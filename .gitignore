@@ -1,1 +1,11 @@
 .DS_Store
+/ハニカムキャンピング/Library/
+Temp
+Build
+Obj
+*.pidb
+*.unityproj
+*.sln
+*.userprefs
+*.swp
+*.csproj
