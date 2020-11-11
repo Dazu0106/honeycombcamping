@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 155262946}
   - component: {fileID: 155262945}
-  - component: {fileID: 155262944}
   - component: {fileID: 155262942}
   - component: {fileID: 155262941}
   m_Layer: 10
@@ -190,21 +189,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5052681, y: 0.46407032}
   m_EdgeRadius: 0
---- !u!114 &155262944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155262939}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f18dbf7b3e927458d92caa064c1e59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementInput: {x: 0, y: 0}
-  direction: {x: 0, y: 0, z: 0}
-  TileColor: {fileID: 733144189}
 --- !u!212 &155262945
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -263,13 +247,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155262939}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 6.87, y: -5.47, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.35, y: -4.81, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &733144186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,7 +3854,6 @@ GameObject:
   m_Component:
   - component: {fileID: 816386641}
   - component: {fileID: 816386640}
-  - component: {fileID: 816386639}
   - component: {fileID: 816386637}
   - component: {fileID: 816386636}
   m_Layer: 10
@@ -3927,21 +3910,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5052681, y: 0.46407032}
   m_EdgeRadius: 0
---- !u!114 &816386639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816386634}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f18dbf7b3e927458d92caa064c1e59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementInput: {x: 0, y: 0}
-  direction: {x: 0, y: 0, z: 0}
-  TileColor: {fileID: 733144189}
 --- !u!212 &816386640
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4001,7 +3969,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816386634}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -6.26, y: 6.05, z: 0}
+  m_LocalPosition: {x: -5.96, y: 5.4, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4039,6 +4007,7 @@ MonoBehaviour:
   player2: {fileID: 816386634}
   player3: {fileID: 1834063426}
   player4: {fileID: 155262939}
+  Tilemap: {fileID: 733144189}
 --- !u!4 &1261990701
 Transform:
   m_ObjectHideFlags: 0
@@ -4089,7 +4058,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.0021804967, g: 0.034882024, b: 0.46226418, a: 0}
+  m_BackGroundColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4172,7 +4141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementInput: {x: 0, y: 0}
   direction: {x: 0, y: 0, z: 0}
-  TileColor: {fileID: 733144189}
+  Tilemap: {fileID: 733144189}
 --- !u!212 &1831242764
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4232,7 +4201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831242762}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -5.97, y: -5.4, z: 0}
+  m_LocalPosition: {x: -5.59, y: -4.79, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4368,7 +4337,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1834063433}
   - component: {fileID: 1834063432}
-  - component: {fileID: 1834063431}
   - component: {fileID: 1834063429}
   - component: {fileID: 1834063428}
   m_Layer: 10
@@ -4425,21 +4393,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5052681, y: 0.46407032}
   m_EdgeRadius: 0
---- !u!114 &1834063431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1834063426}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f18dbf7b3e927458d92caa064c1e59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementInput: {x: 0, y: 0}
-  direction: {x: 0, y: 0, z: 0}
-  TileColor: {fileID: 733144189}
 --- !u!212 &1834063432
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4498,13 +4451,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834063426}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 6.48, y: 6.26, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.93, y: 5.39, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2116921229
 GameObject:
   m_ObjectHideFlags: 0
