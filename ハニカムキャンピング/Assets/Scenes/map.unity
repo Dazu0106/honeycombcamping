@@ -4004,9 +4004,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d65cbeb9d30aa499f4917aa7da37cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player2: {fileID: 816386634}
-  player3: {fileID: 1834063426}
-  player4: {fileID: 155262939}
+  player1: {fileID: 816386634}
+  player2: {fileID: 1834063426}
+  player3: {fileID: 155262939}
   Tilemap: {fileID: 733144189}
 --- !u!4 &1261990701
 Transform:
