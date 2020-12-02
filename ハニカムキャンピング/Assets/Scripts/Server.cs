@@ -41,6 +41,7 @@ public class Server : MonoBehaviour {
            if(CheckAroundTile(player1))
             {
                 player1.transform.position+=new Vector3(0.8f,0,0);
+                CheckAroundTile(player1);
             }
             player2.transform.position+=new Vector3(-0.4f,-0.6f);
             player3.transform.position+=new Vector3(-0.4f,0.6f);
