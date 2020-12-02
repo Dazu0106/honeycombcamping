@@ -35,6 +35,132 @@ public class result : MonoBehaviour
         for(int h=0;h<4;h++){
             player[h]=(protoplayer[h]+geta[h]);
         }
+
+        int a=player[0];
+        int b=player[1];
+        int c=player[2];
+        int d=player[3];
+        if(a/10000=1){
+            player[0]=a-10000;
+            if(b/10000=2){
+                player[1]=b-20000;
+                if(c/10000=3){
+                    player[2]=c-30000;
+                    player[3]=d-40000;
+                }else if(c/10000=4){
+                    player[3]=c-40000;
+                    player[2]=d-30000;
+                }
+            }else if(b/10000=3){
+                player[2]=b-30000;
+                if(c/10000=2){
+                    player[1]=c-20000;
+                    player[3]=d-40000;
+                }else if(c/10000=4){
+                    player[3]=c-40000;
+                    player[1]=d-20000;
+                }
+            }else if(b/10000=4){
+                player[3]=b-40000;
+                if(c/10000=2){
+                    player[1]=c-20000;
+                    player[2]=d-30000;
+                }else if(c/10000=3){
+                    player[3]=c-30000;
+                    player[2]=d-20000;
+                }
+            }
+        }else if(a/10000=2){
+            player[1]=a-20000;
+            if(b/10000=3){
+                player[2]=b-30000;
+                if(c/10000=4){
+                    player[3]=c-40000;
+                    player[0]=d-10000;
+                }else if(c/10000=1){
+                    player[0]=c-10000;
+                    player[3]=d-40000;
+                }
+            }else if(b/10000=4){
+                player[3]=b-40000;
+                if(c/10000=1){
+                    player[0]=c-10000;
+                    player[2]=d-30000;
+                }else if(c/10000=3){
+                    player[2]=c-30000;
+                    player[0]=d-10000;
+                }
+            }else if(b/10000=1){
+                player[0]=b-10000;
+                if(c/10000=4){
+                    player[3]=c-40000;
+                    player[2]=d-30000;
+                }else if(c/10000=3){
+                    player[2]=c-30000;
+                    player[3]=d-40000;
+                }
+            }
+        }else if(a/10000=3){
+            player[2]=a-30000;
+            if(b/10000=1){
+                player[0]=b-10000;
+                if(c/10000=2){
+                    player[1]=c-20000;
+                    player[3]=d-40000;
+                }else if(c/10000=4){
+                    player[3]=c-40000;
+                    player[1]=d-20000;
+                }
+            }else if(b/10000=2){
+                player[1]=b-20000;
+                if(c/10000=1){
+                    player[0]=c-10000;
+                    player[3]=d-40000;
+                }else if(c/10000=4){
+                    player[3]=c-40000;
+                    player[0]=d-10000;
+                }
+            }else if(b/10000=4){
+                player[3]=b-40000;
+                if(c/10000=2){
+                    player[1]=c-20000;
+                    player[0]=d-10000;
+                }else if(c/10000=1){
+                    player[0]=c-10000;
+                    player[1]=d-20000;
+                }
+            }
+        }else(a/10000=4){
+            player[3]=a-40000;
+            if(b/10000=1){
+                player[0]=b-10000;
+                if(c/10000=3){
+                    player[2]=c-30000;
+                    player[1]=d-20000;
+                }else if(c/10000=2){
+                    player[1]=c-20000;
+                    player[2]=d-30000;
+                }
+            }else if(b/10000=2){
+                player[1]=b-20000;
+                if(c/10000=1){
+                    player[0]=c-10000;
+                    player[2]=d-30000;
+                }else if(c/10000=3){
+                    player[2]=c-30000;
+                    player[0]=d-10000;
+                }
+            }else if(b/10000=3){
+                player[2]=b-30000;
+                if(c/10000=2){
+                    player[1]=c-20000;
+                    player[0]=d-10000;
+                }else if(c/10000=1){
+                    player[0]=c-10000;
+                    player[1]=d-20000;
+                }
+            }
+        }
         // 処理回数を保持する変数です。
         int iterationNum = 0;
 
@@ -60,8 +186,6 @@ public class result : MonoBehaviour
             
         }
         
-        
-        // コンソールに配列の中身を表示します。
         Debug.Log(player[0]);
         Debug.Log(player[1]);
         Debug.Log(player[2]);
