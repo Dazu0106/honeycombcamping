@@ -11,7 +11,7 @@ public class Server : MonoBehaviour {
     public Tilemap Tilemap;
     private Color player1color,player2color,player3color;
     private string text="";
-
+    bool fr,fl,r,l,br,bl;//右上、左上、右、左、右下、左下
 
    
     void Awake ()
@@ -27,14 +27,14 @@ public class Server : MonoBehaviour {
 
 
     void Start () {
-        var url = "ws://localhost:8080";
+        var url = /*"172.16.98.82:8080";*/"ws://localhost:8080";
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
 
     }
     void Update () {
-       if(text!="") 
+       if(text=="order") 
        {
            if(CheckAroundTile(player1))
             {
@@ -47,27 +47,25 @@ public class Server : MonoBehaviour {
             UpdateTileColor(player2,player2color);
             UpdateTileColor(player3,player3color);
             text="";
+            
            
-       }
+       } 
+       if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("clicked!");
+            count++;
+            ws.Send("order");
+        }
 
         
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            
-            Debug.Log("clicked!");
-            count++;
-            //ws.Send("clicked No. " + 
-            ws.Send(count.ToString());
-        }
+     
     }
 
     public void ReceivTest(string message)
     {   text=message;
         
         
-        
-        Debug.Log(text) ;
     }
 
     public void UpdateTileColor(GameObject player,Color playercolor)
@@ -92,7 +90,12 @@ public class Server : MonoBehaviour {
         Color lC=Tilemap.GetColor(lPos);
         Color dRC=Tilemap.GetColor(dRPos);
         Color dLC=Tilemap.GetColor(dLPos);
-        if((uRC==Color.white || uLC==Color.white || rC==Color.white|| lC==Color.white || dRC==Color.white || dLC==Color.white))
+        if(uLC==Color.white)
+        {
+            fr = true;
+            
+        }
+        if(( || uLC==Color.white || rC==Color.white|| lC==Color.white || dRC==Color.white || dLC==Color.white))
         {
             return true;
         }
