@@ -101,7 +101,7 @@ public class Server : MonoBehaviour {
         bl=false;
 
 
-        if(uRC==Color.white)
+        if(uRC==Color.white)//以下それぞれのタイルの色が白かをチェック
         {
             fr = true;
             
@@ -132,7 +132,7 @@ public class Server : MonoBehaviour {
             
         }
 
-        if( fr || fl|| r || l || br || bl)
+        if( fr || fl|| r || l || br || bl)//どれかがtrueならば移動可能
         {
             return true;
             
