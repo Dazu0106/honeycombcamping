@@ -4222,6 +4222,12 @@ MonoBehaviour:
   player2: {fileID: 1834063426}
   player3: {fileID: 155262939}
   Tilemap: {fileID: 733144189}
+  fr: 1
+  fl: 1
+  r: 1
+  l: 1
+  br: 1
+  bl: 1
 --- !u!4 &1261990701
 Transform:
   m_ObjectHideFlags: 0

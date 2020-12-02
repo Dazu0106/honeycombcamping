@@ -11,7 +11,8 @@ public class Server : MonoBehaviour {
     public Tilemap Tilemap;
     private Color player1color,player2color,player3color;
     private string text="";
-    bool fr,fl,r,l,br,bl;//右上、左上、右、左、右下、左下
+    public bool fr,fl,r,l,br,bl;//右上、左上、右、左、右下、左下
+   
 
    
     void Awake ()
@@ -23,6 +24,7 @@ public class Server : MonoBehaviour {
             UpdateTileColor(player1,player1color);
             UpdateTileColor(player2,player2color);
             UpdateTileColor(player3,player3color);
+            
         }
 
 
@@ -76,7 +78,7 @@ public class Server : MonoBehaviour {
         print(playercolor);
     }
     public bool CheckAroundTile(GameObject player)
-    {
+    {   
         Vector3Int uRPos = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
         Vector3Int uLPos = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,-0.6f));//左斜め上
         Vector3Int rPos = Tilemap.WorldToCell(player.transform.position+new Vector3(0.8f,0,0));//真右
@@ -90,15 +92,64 @@ public class Server : MonoBehaviour {
         Color lC=Tilemap.GetColor(lPos);
         Color dRC=Tilemap.GetColor(dRPos);
         Color dLC=Tilemap.GetColor(dLPos);
-        if(uLC==Color.white)
+
+        fr=false;
+        fl=false;
+        r=false;
+        l=false;
+        br=false;
+        bl=false;
+
+
+        if(uRC==Color.white)
         {
             fr = true;
             
         }
-        if(( || uLC==Color.white || rC==Color.white|| lC==Color.white || dRC==Color.white || dLC==Color.white))
+        if(uLC==Color.white)
+        {
+            fl = true;
+            
+        }
+        if(rC==Color.white)
+        {
+            r = true;
+            
+        }
+        if(lC==Color.white)
+        {
+            l = true;
+            
+        }
+        if(dRC==Color.white)
+        {
+            br = true;
+            
+        }
+        if(dLC==Color.white)
+        {
+            bl = true;
+            
+        }
+
+        if( fr || fl|| r || l || br || bl)
         {
             return true;
+            
+            fr=false;
+            fl=false;
+            r=false;
+            l=false;
+            br=false;
+            bl=false;
         }
+            fr=false;
+            fl=false;
+            r=false;
+            l=false;
+            br=false;
+            bl=false;
+
 
         return false;
     }
