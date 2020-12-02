@@ -16,9 +16,55 @@ server.on('connection', ws => {
     */
 
     let turnNumber = 0;
+    var resultNum = 0 ;
+    var GameJudg = false ;
     var order = [-1,-1,-1,-1] ;
+    var rdy = [0,0,0,0] ;
+    var wildCard = false;
+    var CanMove = [1 , 1 , 1 , 1] ;
     ws.on('message' , message =>
     {
+        if(message == "ready")
+        {
+            var rdygo = 0;
+            rdy[rdygo] = 1 ;
+            if(order[3]==1)
+            {
+                server.clients.forEach(server =>
+                    {
+                        client.send("readygo") ;
+                        //readygoをもらった一人のプレイヤーがorderを投げる
+
+
+
+                    });
+                rdy = [0,0,0,0] ;
+            }
+            else
+            rdygo++ ;
+        }
+
+        if(message == "GameSet")
+        {
+            server.clients.forEach(client =>
+                {
+                    client.send(resultNum + "resultcheck") ;
+                });
+        }
+
+        if(~message.indexOf("result"))
+        {
+            var result = "" ;
+            result = message.substr(6) //result35
+
+            server.clients.forEach(client =>
+                {
+                    client.send(resultNum + result) ;
+                    resultNum++ ;
+                    client.send(resultNum + "resultcheck");
+                });
+        }
+
         if(message == "order")
         {
             turnNumber = 0 ;
@@ -42,20 +88,50 @@ server.on('connection', ws => {
 
             server.clients.forEach(client => 
                 {
+                    client.send("order") ;
                     for(let i = 0 ; i < 4 ; i++)
                     {
                         client.send(order[i])
                     }
+                    while(CanMove[order[turnNumber]] == -1)
+                    {
+                        turnNumber++ ;
+                        if(turnNumber > 4) 
+                        {
+                            GameJudg = true ;
+                            client.send("GameSet") ;
+                            break ;
+                        }
+                    }
+                    if(GameJudg != true)
+                    client.send(order[turnNumber] + ",Start") ;
+                    
                 });
         }
 
         if(message == "wildC")
         {
             //ワイルドカードの挙動を書く
-            server.clients.forEach(client=>
+            wildCard = true ;
+        }
+
+        if(message == "cantMove")
+        {
+            CanMove[order[turnNumber]] = -1 ;
+            turnNumber++ ;
+
+            server.clients.forEach(client =>
                 {
-                    client.send(order[turnNumber] + ",Start") ;
-                });
+                    if(turnNumber < 4 )
+                    {
+                        client.send(order[turnNumber] + ",Start") ;
+                    }
+                    else
+                    {
+                        client.send("turnAround") ;
+                        turnNumber = 0 ;
+                    }
+                })
         }
 
 
@@ -88,15 +164,31 @@ server.on('connection', ws => {
                 Destination = "Lfront" ;
             }
 
+            if(~message.indexOf("Stop"))
+            {
+                CanMove[order[turnNumber]] = -1 ;
+            }
 
             server.clients.forEach(client =>
                 {
-                    client.send(order[turnNumber] +','+ Destination) ;
-                    turnNumber++ ;
-                    if(turnNumber < 4)
-                    client.send(order[turnNumber] + ",Start") ;
+                    if(wildCard)
+                    {
+                        client.send(order[turnNumber] +','+ Destination) ;
+                        wildCard = false ;
+                    }
                     else
-                    turnNumber = 0 ;
+                    {
+                        client.send(order[turnNumber] + ',' + Destination) ;
+                        turnNumber++ ;
+                    }
+                    if(turnNumber < 4)
+                        client.send(order[turnNumber] + ",Start") ;
+                    else
+                    {
+                        client.send("turnAround") ;
+                        turnNumber = 0 ;
+
+                    }
                 }) ;
         }
     });
@@ -120,17 +212,3 @@ server.on('connection', ws => {
     });
 });
 
-
-
-
-
-
-server.clients.forEach(client =>
-    {
-        client.send(order[turnNumber] + ",End") ;
-        turnNumber++ ;
-        if(turnNumber < 4)
-        client.send(order[turnNumber] + ",Start") ;
-        else
-        turnNumber = 0 ;
-    }) ;

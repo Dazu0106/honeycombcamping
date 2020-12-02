@@ -31,7 +31,7 @@ public class Server : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.B))
         {
-            ws.Send("TurnEnd") ;
+            ws.Send("wildC") ;
         }
 
         if(Input.GetKeyDown(KeyCode.I))
@@ -62,6 +62,11 @@ public class Server : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.U))
         {
             ws.Send("TurnEndLfront") ;
+        }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            ws.Send("ready") ;
         }
     }
 
