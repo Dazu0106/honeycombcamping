@@ -23,6 +23,46 @@ public class Server : MonoBehaviour {
             count++;
             ws.Send("clicked No. " + count.ToString());
         }
+
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            ws.Send("order") ;
+        }
+
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            ws.Send("TurnEnd") ;
+        }
+
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            ws.Send("TurnEndRfront") ;
+        }
+
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            ws.Send("TurnEndRight") ;
+        }
+
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            ws.Send("TurnEndRback") ;
+        }
+
+        if(Input.GetKeyDown(KeyCode.N))
+        {
+            ws.Send("TurnEndLback") ;
+        }
+
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            ws.Send("TurnEndLeft") ;
+        }
+
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            ws.Send("TurnEndLfront") ;
+        }
     }
 
     public void ReceivTest(string text)
