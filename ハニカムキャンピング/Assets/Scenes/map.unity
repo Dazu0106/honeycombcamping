@@ -4223,11 +4223,6 @@ MonoBehaviour:
   - {fileID: 1834063426}
   - {fileID: 155262939}
   Tilemap: {fileID: 733144189}
-  playercolor:
-  - {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  settable: 000000000000
 --- !u!4 &1261990701
 Transform:
   m_ObjectHideFlags: 0

@@ -9,11 +9,9 @@ public class Server : MonoBehaviour {
     public WebSocket ws;
     public GameObject[] player;
     public Tilemap Tilemap;
-    public Color[] playercolor;
-    Vector3Int[] pos;
-    Color[] poscolor;
+    private Color[] playercolor = new Color[3];
     private string text="";
-    public bool[] settable;//右上、左上、右、左、右下、左下の順で6つ
+    private bool[] settable = new bool[6];//右上、左上、右、左、右下、左下の順で6つ
     private bool movable;//移動可能か
 
    
@@ -45,6 +43,7 @@ public class Server : MonoBehaviour {
             {
                 player[0].transform.position+=new Vector3(0.8f,0,0);
                 CheckAroundTile(player[0]);
+                
             }
             player[1].transform.position+=new Vector3(-0.4f,-0.6f);
             player[2].transform.position+=new Vector3(-0.4f,0.6f);
@@ -83,6 +82,8 @@ public class Server : MonoBehaviour {
     }
     public void CheckAroundTile(GameObject player)
     {   
+        Vector3Int[] pos = new Vector3Int[6];
+        Color[] poscolor = new Color[6] ;
         int length = 6;
          pos[0] = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
          pos[1] = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,-0.6f));//左斜め上
@@ -104,13 +105,16 @@ public class Server : MonoBehaviour {
 
         
 
-        if( settable[0])//どれかがtrueならば移動可能
+        if( settable[0] || settable[1] || settable[2] || settable[3] ||settable[4] || settable[5])//どれかがtrueならば移動可能
         {
             movable = true;
             
         }
-
-
+        else
+        {
             movable = false;
+        }
+
+            
     }
 }
