@@ -7,23 +7,25 @@ using UnityEngine.Tilemaps;
 public class Server : MonoBehaviour {
     private int count = 0; // click counter
     public WebSocket ws;
-    public GameObject player1,player2,player3;
+    public GameObject[] player;
     public Tilemap Tilemap;
-    private Color player1color,player2color,player3color;
+    public Color[] playercolor;
+    Vector3Int[] pos;
+    Color[] poscolor;
     private string text="";
-    public bool fr,fl,r,l,br,bl;//右上、左上、右、左、右下、左下
-   
+    public bool[] settable;//右上、左上、右、左、右下、左下の順で6つ
+    private bool movable;//移動可能か
 
    
     void Awake ()
         {   
-            player1color = Color.blue;
-            player2color = Color.green;
-            player3color = Color.yellow;
+            playercolor[0] = Color.blue;
+            playercolor[1] = Color.green;
+            playercolor[2] = Color.yellow;
 
-            UpdateTileColor(player1,player1color);
-            UpdateTileColor(player2,player2color);
-            UpdateTileColor(player3,player3color);
+            UpdateTileColor(player[0],playercolor[0]);
+            UpdateTileColor(player[1],playercolor[1]);
+            UpdateTileColor(player[2],playercolor[2]);
             
         }
 
@@ -33,22 +35,23 @@ public class Server : MonoBehaviour {
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
+        movable = true;
 
     }
     void Update () {
        if(text=="order") 
        {
-           if(CheckAroundTile(player1))
+           if(movable)
             {
-                player1.transform.position+=new Vector3(0.8f,0,0);
-                CheckAroundTile(player1);
+                player[0].transform.position+=new Vector3(0.8f,0,0);
+                CheckAroundTile(player[0]);
             }
-            player2.transform.position+=new Vector3(-0.4f,-0.6f);
-            player3.transform.position+=new Vector3(-0.4f,0.6f);
+            player[1].transform.position+=new Vector3(-0.4f,-0.6f);
+            player[2].transform.position+=new Vector3(-0.4f,0.6f);
             
-            UpdateTileColor(player1,player1color);
-            UpdateTileColor(player2,player2color);
-            UpdateTileColor(player3,player3color);
+            UpdateTileColor(player[0],playercolor[0]);
+            UpdateTileColor(player[1],playercolor[1]);
+            UpdateTileColor(player[2],playercolor[2]);
             text="";
             
            
@@ -78,80 +81,36 @@ public class Server : MonoBehaviour {
         Tilemap.SetColor( currentPlayerTile, playercolor );//Tileのcolorをplayercolorに変更
         print(playercolor);
     }
-    public bool CheckAroundTile(GameObject player)
+    public void CheckAroundTile(GameObject player)
     {   
-        Vector3Int uRPos = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
-        Vector3Int uLPos = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,-0.6f));//左斜め上
-        Vector3Int rPos = Tilemap.WorldToCell(player.transform.position+new Vector3(0.8f,0,0));//真右
-        Vector3Int lPos = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.8f,0,0));//真左
-        Vector3Int dRPos = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.4f,0.6f)); //右斜め下
-        Vector3Int dLPos = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.4f,-0.6f));//左斜め下
+        int length = 6;
+         pos[0] = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
+         pos[1] = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,-0.6f));//左斜め上
+         pos[2] = Tilemap.WorldToCell(player.transform.position+new Vector3(0.8f,0,0));//真右
+         pos[3] = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.8f,0,0));//真左
+         pos[4] = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.4f,0.6f)); //右斜め下
+         pos[5] = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.4f,-0.6f));//左斜め下
 
-        Color uRC=Tilemap.GetColor(uRPos);
-        Color uLC=Tilemap.GetColor(uLPos);
-        Color rC=Tilemap.GetColor(rPos);
-        Color lC=Tilemap.GetColor(lPos);
-        Color dRC=Tilemap.GetColor(dRPos);
-        Color dLC=Tilemap.GetColor(dLPos);
+        for (int i = 0; i < length; i++)
+        {
+            poscolor[i]=Tilemap.GetColor(pos[i]);
+            settable[i]=false;
+            if(poscolor[i]==Color.white)//タイルが白いかをチェック
+            {
+                settable[i]=true;
+            }
+        }
+        
 
-        fr=false;
-        fl=false;
-        r=false;
-        l=false;
-        br=false;
-        bl=false;
+        
 
-
-        if(uRC==Color.white)//以下それぞれのタイルの色が白かをチェック
+        if( settable[0])//どれかがtrueならば移動可能
         {
-            fr = true;
-            
-        }
-        if(uLC==Color.white)
-        {
-            fl = true;
-            
-        }
-        if(rC==Color.white)
-        {
-            r = true;
-            
-        }
-        if(lC==Color.white)
-        {
-            l = true;
-            
-        }
-        if(dRC==Color.white)
-        {
-            br = true;
-            
-        }
-        if(dLC==Color.white)
-        {
-            bl = true;
+            movable = true;
             
         }
 
-        if( fr || fl|| r || l || br || bl)//どれかがtrueならば移動可能
-        {
-            return true;
-            
-            fr=false;
-            fl=false;
-            r=false;
-            l=false;
-            br=false;
-            bl=false;
-        }
-            fr=false;
-            fl=false;
-            r=false;
-            l=false;
-            br=false;
-            bl=false;
 
-
-        return false;
+            movable = false;
     }
 }

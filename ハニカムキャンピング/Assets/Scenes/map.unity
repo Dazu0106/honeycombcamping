@@ -4218,16 +4218,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d65cbeb9d30aa499f4917aa7da37cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 816386634}
-  player2: {fileID: 1834063426}
-  player3: {fileID: 155262939}
+  player:
+  - {fileID: 816386634}
+  - {fileID: 1834063426}
+  - {fileID: 155262939}
   Tilemap: {fileID: 733144189}
-  fr: 1
-  fl: 1
-  r: 1
-  l: 1
-  br: 1
-  bl: 1
+  playercolor:
+  - {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  settable: 000000000000
 --- !u!4 &1261990701
 Transform:
   m_ObjectHideFlags: 0
