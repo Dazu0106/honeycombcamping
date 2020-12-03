@@ -7,20 +7,51 @@ public class result : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    void Start(){
-        
+   
+    // 二つのKeyValuePair<string, int>を比較するためのメソッド
+    static int CompareKeyValuePair(KeyValuePair<string, int> x, KeyValuePair<string, int> y)
+    {
+        // Keyで比較した結果を返す
+        return string.Compare(x.Key, y.Key);
     }
 
-    void ExecuteSort(){
+
+    void Start(){
+        /*Player<string,int> dictionary=new Player<string,int>();
+        
+        player["player1"]=12;
+        player["player2"]=3;
+        player["player3"]=5;
+        player["player4"]=4;*/
+         // ソート対象のDictionary<string, int>
+    var dict = new Dictionary<string, int>();
+
+    dict.Add("Bob", 3);
+    dict.Add("Dave", 1);
+    dict.Add("Alice", 2);
+    dict.Add("Charlie", 5);
+    dict.Add("Eve", 4);
+
+    // Dictionaryの内容をコピーして、List<KeyValuePair<string, int>>に変換
+    var pairs = new List<KeyValuePair<string, int>>(dict);
+
+    // List.Sortメソッドを使ってソート
+    // (引数に比較方法を定義したメソッドを指定する)
+    pairs.Sort(CompareKeyValuePair);
+
+    
+    }
+
+    /*void ExecuteSort(){
         // ソートしたい配列を定義します。
         
-        /*int[] targetArray = new int[4]{26, 40, 19, 50};*/
-        int[] protoplayer;
-        protoplayer=new int[4];
-        protoplayer[0]=26;
-        protoplayer[1]=40;
-        protoplayer[2]=19;
-        protoplayer[3]=50;
+        int[] targetArray = new int[4]{26, 40, 19, 50};
+        int[] player;
+        player=new int[4];
+        player[0]=26;
+        player[1]=40;
+        player[2]=19;
+        player[3]=50;
         // コンソールに配列の中身を表示します。
         int[] geta;
         geta=new int[4];
@@ -185,19 +216,142 @@ public class result : MonoBehaviour
             // コンソールに配列の中身を表示します。
             
         }
-        
-        Debug.Log(player[0]);
-        Debug.Log(player[1]);
-        Debug.Log(player[2]);
+
+        if(a==player[0]){
+            player[0]=a;
+            if(b==player[1]){
+                player[1]=b;
+                if(c==player[2]){
+                    player[2]=c;
+                    player[3]=d;
+                }else if(d==player[2]){
+                    player[3]=c;
+                    player[2]=d;
+                }
+            }else if(c==player[1]){
+                player[1]=c;
+                if(d==player[2]){
+                    player[2]=d;
+                    player[3]=b;
+                }else if(b==player[2]){
+                    player[3]=d;
+                    player[2]=b;
+                }
+            }else if(d==player[1]){
+                player[1]=d;
+                if(b==player[2]){
+                    player[2]=b;
+                    player[3]=c;
+                }else if(c==player[2]){
+                    player[2]=c;
+                    player[3]=b;
+                }
+            }
+        }else if(b==player[0]){
+            player[0]=b;
+            if(c==player[1]){
+                player[1]=c;
+                if(d==player[2]){
+                    player[2]=d;
+                    player[3]=a;
+                }else if(a==player[2]){
+                    player[2]=a;
+                    player[3]=d;
+                }
+            }else if(d==player[1]){
+                player[1]=d;
+                if(a==player[2]){
+                    player[2]=a;
+                    player[3]=c;
+                }else if(c==player[2]){
+                    player[3]=a;
+                    player[2]=c;
+                }
+            }else if(a==player[1]){
+                player[1]=a;
+                if(c==player[2]){
+                    player[2]=c;
+                    player[3]=d;
+                }else if(d==player[2]){
+                    player[2]=d;
+                    player[3]=c;
+                }
+            }
+        }else if(c==player[0]){
+            player[0]=c;
+            if(b==player[1]){
+                player[1]=b;
+                if(c==player[2]){
+                    player[2]=c;
+                    player[3]=d;
+                }else if(d==player[2]){
+                    player[3]=c;
+                    player[2]=d;
+                }
+            }else if(c==player[1]){
+                player[1]=c;
+                if(d==player[2]){
+                    player[2]=d;
+                    player[3]=b;
+                }else if(b==player[2]){
+                    player[3]=d;
+                    player[2]=b;
+                }
+            }else if(d==player[1]){
+                player[1]=d;
+                if(b==player[2]){
+                    player[2]=b;
+                    player[3]=c;
+                }else if(c==player[2]){
+                    player[2]=c;
+                    player[3]=b;
+                }
+            }
+        }else if(a==player[0]){
+            player[0]=a;
+            if(b==player[1]){
+                player[1]=b;
+                if(c==player[2]){
+                    player[2]=c;
+                    player[3]=d;
+                }else if(d==player[2]){
+                    player[3]=c;
+                    player[2]=d;
+                }
+            }else if(c==player[1]){
+                player[1]=c;
+                if(d==player[2]){
+                    player[2]=d;
+                    player[3]=b;
+                }else if(b==player[2]){
+                    player[3]=d;
+                    player[2]=b;
+                }
+            }else if(d==player[1]){
+                player[1]=d;
+                if(b==player[2]){
+                    player[2]=b;
+                    player[3]=c;
+                }else if(c==player[2]){
+                    player[2]=c;
+                    player[3]=b;
+                }
+            }
+        }
+
         Debug.Log(player[3]);
-    }
+        Debug.Log(player[2]);
+        Debug.Log(player[1]);
+        Debug.Log(player[0]);
+    }*/
 
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKey(KeyCode.A)){
-        ExecuteSort();
+        Debug.Log("{0} {1}",pair.Key,pair.Value);
+        //ExecuteSort();//
         }
         
 
