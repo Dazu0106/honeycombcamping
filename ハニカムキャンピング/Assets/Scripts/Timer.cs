@@ -7,6 +7,7 @@ using WebSocketSharp ;
 
 public class Timer : MonoBehaviour
 {
+    public bool TurnFlag = true ;
     public WebSocket ws ;
     public string text="" ;
     public int playerNum =  0;
@@ -35,11 +36,12 @@ public class Timer : MonoBehaviour
         timeText.text = countdown.ToString("f1") + "秒";
 
         //countdownが0以下になったとき
-        if (countdown <= 0)
+        if (countdown <= 0 && (TurnFlag))
         {
 
             timeText.text = "時間になりました！";
             ws.Send("turnEnd,timeover") ;
+            TurnFlag = false ;
         }
 
         if(text == (playerNum + ",Start"))
