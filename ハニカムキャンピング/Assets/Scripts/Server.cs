@@ -11,8 +11,6 @@ public class Server : MonoBehaviour {
     public Tilemap Tilemap;
     private Color[] playercolor = new Color[3];
     private string text="";
-    private bool[] settable = new bool[6];//右上、左上、右、左、右下、左下の順で6つ
-    private bool movable;//移動可能か
 
    
     void Awake ()
@@ -33,18 +31,12 @@ public class Server : MonoBehaviour {
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
-        movable = true;
 
     }
     void Update () {
        if(text=="order") 
        {
-           if(movable)
-            {
-                player[0].transform.position+=new Vector3(0.8f,0,0);
-                CheckAroundTile(player[0]);
-                
-            }
+            player[0].transform.position+=new Vector3(0.8f,0,0);
             player[1].transform.position+=new Vector3(-0.4f,-0.6f);
             player[2].transform.position+=new Vector3(-0.4f,0.6f);
             
@@ -78,43 +70,7 @@ public class Server : MonoBehaviour {
         Vector3Int currentPlayerTile = Tilemap.WorldToCell(player.transform.position);//現在いるTileの座標を取得
         Tilemap.SetTileFlags(currentPlayerTile, TileFlags.None);//Tileのフラグをtrueに
         Tilemap.SetColor( currentPlayerTile, playercolor );//Tileのcolorをplayercolorに変更
-        print(playercolor);
     }
-    public void CheckAroundTile(GameObject player)
-    {   
-        Vector3Int[] pos = new Vector3Int[6];
-        Color[] poscolor = new Color[6] ;
-        int length = 6;
-         pos[0] = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
-         pos[1] = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,-0.6f));//左斜め上
-         pos[2] = Tilemap.WorldToCell(player.transform.position+new Vector3(0.8f,0,0));//真右
-         pos[3] = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.8f,0,0));//真左
-         pos[4] = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.4f,0.6f)); //右斜め下
-         pos[5] = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.4f,-0.6f));//左斜め下
 
-        for (int i = 0; i < length; i++)
-        {
-            poscolor[i]=Tilemap.GetColor(pos[i]);
-            settable[i]=false;
-            if(poscolor[i]==Color.white)//タイルが白いかをチェック
-            {
-                settable[i]=true;
-            }
-        }
-        
-
-        
-
-        if( settable[0] || settable[1] || settable[2] || settable[3] ||settable[4] || settable[5])//どれかがtrueならば移動可能
-        {
-            movable = true;
-            
-        }
-        else
-        {
-            movable = false;
-        }
-
-            
-    }
+    
 }
