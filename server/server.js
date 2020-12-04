@@ -17,7 +17,7 @@ server.on('connection', ws => {
 
     let turnNumber = 0;
     var resultNum = 0 ;
-    var GameJudg = false ;
+    var GameJudge = false ;
     var order = [-1,-1,-1,-1] ;
     var rdy = [0,0,0,0] ;
     var wildCard = false;
@@ -28,7 +28,7 @@ server.on('connection', ws => {
         {
             var rdygo = 0;
             rdy[rdygo] = 1 ;
-            if(order[3]==1)
+            if(rdy[3]==1)
             {
                 server.clients.forEach(server =>
                     {
@@ -88,22 +88,18 @@ server.on('connection', ws => {
 
             server.clients.forEach(client => 
                 {
-                    client.send("order") ;
-                    for(let i = 0 ; i < 4 ; i++)
-                    {
-                        client.send(order[i])
-                    }
+                    client.send("order"+order[0]+order[1]+order[2]+order[3]) ;
                     while(CanMove[order[turnNumber]] == -1)
                     {
                         turnNumber++ ;
                         if(turnNumber > 4) 
                         {
-                            GameJudg = true ;
+                            GameJudge = true ;
                             client.send("GameSet") ;
                             break ;
                         }
                     }
-                    if(GameJudg != true)
+                    if(GameJudge != true)
                     client.send(order[turnNumber] + ",Start") ;
                     
                 });
