@@ -163,6 +163,10 @@ server.on('connection', ws => {
             {
                 Destination = "Lfront" ;
             }
+            else if(~messa.indexOf("timeover"))
+            {
+                Destination = "None"
+            }
 
             if(~message.indexOf("Stop"))
             {
