@@ -13,8 +13,8 @@ public class ActControllerManager : MonoBehaviour
     GameObject player;
 
     public Vector3 direction;
-    public Tilemap Tilemap;
 
+    private Tilemap hexTile;
     private bool[] settable = new bool[6];//右上、左上、右、左、右下、左下の順で6つ
     private bool movable;//移動可能か
 
@@ -31,6 +31,7 @@ public class ActControllerManager : MonoBehaviour
         down_L = GameObject.Find("Left down");
 
         player = GameObject.Find("Bullet");
+        hexTile = player.GetComponent<MovementController>().Tilemap;
 
         CheckAroundTile();
     }
@@ -130,17 +131,17 @@ public class ActControllerManager : MonoBehaviour
         Vector3Int[] pos = new Vector3Int[6];
         Color[] poscolor = new Color[6] ;
         int length = 6;
-         pos[0] = Tilemap.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
-         pos[1] = Tilemap.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.4f,-0.6f));//左斜め上
-         pos[2] = Tilemap.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.8f,0,0));//真右
-         pos[3] = Tilemap.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.8f,0,0));//真左
-         pos[4] = Tilemap.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.4f,0.6f)); //右斜め下
-         pos[5] = Tilemap.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.4f,-0.6f));//左斜め下
+         pos[0] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
+         pos[1] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.4f,-0.6f));//左斜め上
+         pos[2] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.8f,0,0));//真右
+         pos[3] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.8f,0,0));//真左
+         pos[4] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.4f,0.6f)); //右斜め下
+         pos[5] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.4f,-0.6f));//左斜め下
 
         for (int i = 0; i < length; i++)
         {   
             //Debug.Log("pos"+i+"="+pos[i]);
-            poscolor[i]=Tilemap.GetColor(pos[i]);
+            poscolor[i]=hexTile.GetColor(pos[i]);
             //Debug.Log(poscolor[i]);
             settable[i]=false;
             if(poscolor[i]==Color.white)//タイルが白いかをチェック
@@ -171,8 +172,3 @@ public class ActControllerManager : MonoBehaviour
 }
 
 
-
-// ボタンクリックをInputSystemに紐づける方法がわからない → 直接directionを指定してやって動かしてみる? 
-// MovementControllerを継承すると Debug.Logが働かなくなる? (そもそもif文が動いてない可能性あり)
-
-// MonoBehaviourを継承したMovementControllerであるから動くんじゃないかわからん
