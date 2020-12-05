@@ -38,9 +38,8 @@ public class ActControllerManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         if(movable){
-            
             if(Input.GetMouseButtonDown(0)){
                 clickedButton = null;
 
@@ -80,23 +79,27 @@ public class ActControllerManager : MonoBehaviour
                 if(clickedButton == down_R&&settable[4]){
                     CheckAroundTile();
                     //Debug.Log("Moved right down");
-                    //Debug.Log("settable[4]"+settable[4]);
+                    Debug.Log("settable[4]"+settable[4]);
                     direction = new Vector3(0.4f,-0.6f);
                     player.GetComponent<MovementController>().transform.position += direction;
                     player.GetComponent<MovementController>().UpdatePosition();
                     CheckAroundTile();
+                    //Debug.Log("settable[4]"+settable[4]);
+                    
                     
                 }
 
                 // 左上
                 if(clickedButton == up_L&&settable[1]){
                     CheckAroundTile();
-                    //Debug.Log("Moved left up");
-                    //Debug.Log("settable[1]"+settable[1]);
+                   // Debug.Log("Moved left up"); 
+                    Debug.Log("settable[1]"+settable[1]);
                     direction = new Vector3(-0.4f,0.6f);
                     player.GetComponent<MovementController>().transform.position += direction;
                     player.GetComponent<MovementController>().UpdatePosition();
                     CheckAroundTile();
+                    //Debug.Log("settable[1]"+settable[1]);
+                    
                     
                 }
 
@@ -132,22 +135,22 @@ public class ActControllerManager : MonoBehaviour
         Color[] poscolor = new Color[6] ;
         int length = 6;
          pos[0] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
-         pos[1] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.4f,-0.6f));//左斜め上
+         pos[1] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.4f,0.6f));//左斜め上
          pos[2] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.8f,0,0));//真右
          pos[3] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.8f,0,0));//真左
-         pos[4] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.4f,0.6f)); //右斜め下
+         pos[4] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.4f,-0.6f)); //右斜め下
          pos[5] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.4f,-0.6f));//左斜め下
 
         for (int i = 0; i < length; i++)
         {   
             //Debug.Log("pos"+i+"="+pos[i]);
             poscolor[i]=hexTile.GetColor(pos[i]);
-            //Debug.Log(poscolor[i]);
             settable[i]=false;
             if(poscolor[i]==Color.white)//タイルが白いかをチェック
             {
                 settable[i]=true;
             }
+            //Debug.Log("settable"+i+"="+settable[i]);
         }
         
 
