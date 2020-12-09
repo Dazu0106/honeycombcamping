@@ -17,7 +17,7 @@ public class ActControllerManager : MonoBehaviour
     private Tilemap hexTile;
     private bool[] settable = new bool[6];//右上、左上、右、左、右下、左下の順で6つ
     private bool movable;//移動可能か
-
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -52,76 +52,94 @@ public class ActControllerManager : MonoBehaviour
                 } 
 
                 // 右上
-                if(clickedButton == up_R&&settable[0]){
+                if(clickedButton == up_R){
                     CheckAroundTile();
-                    //Debug.Log("Moved right up");
-                    //Debug.Log("settable[0]"+settable[0]);
-                    direction = new Vector3(0.4f,0.6f);
-                    player.GetComponent<MovementController>().transform.position += direction;
-                    player.GetComponent<MovementController>().UpdatePosition();
+                    if(settable[0]){
+                    
+                        //Debug.Log("Moved right up");
+                        //Debug.Log("settable[0]"+settable[0]);
+                        direction = new Vector3(0.4f,0.6f);
+                        player.GetComponent<MovementController>().transform.position += direction;
+                        player.GetComponent<MovementController>().UpdatePosition();
+                        
+                    }
                     CheckAroundTile();
                     
                 }
                 
                 // 右
-                if(clickedButton == mid_R&&settable[2]){
+                if(clickedButton == mid_R){
                     CheckAroundTile();
-                    //Debug.Log("Moved right middle");
-                    //Debug.Log("settable[2]"+settable[2]);
-                    direction = new Vector3(0.8f,0,0);
-                    player.GetComponent<MovementController>().transform.position += direction;
-                    player.GetComponent<MovementController>().UpdatePosition();
+                    if(settable[2]){
+                        //Debug.Log("Moved right middle");
+                        //Debug.Log("settable[2]"+settable[2]);
+                        direction = new Vector3(0.8f,0,0);
+                        player.GetComponent<MovementController>().transform.position += direction;
+                        player.GetComponent<MovementController>().UpdatePosition();
+                        
+                    }
                     CheckAroundTile();
                     
                 }
 
                 // 右下
-                if(clickedButton == down_R&&settable[4]){
+                if(clickedButton == down_R){
                     CheckAroundTile();
-                    //Debug.Log("Moved right down");
-                    Debug.Log("settable[4]"+settable[4]);
-                    direction = new Vector3(0.4f,-0.6f);
-                    player.GetComponent<MovementController>().transform.position += direction;
-                    player.GetComponent<MovementController>().UpdatePosition();
+                    if(settable[4]){
+                        //Debug.Log("Moved right down");
+                        Debug.Log("settable[4]"+settable[4]);
+                        direction = new Vector3(0.4f,-0.6f);
+                        player.GetComponent<MovementController>().transform.position += direction;
+                        player.GetComponent<MovementController>().UpdatePosition();
+                        
+                    }
                     CheckAroundTile();
-                    //Debug.Log("settable[4]"+settable[4]);
+                        //Debug.Log("settable[4]"+settable[4]);
                     
                     
                 }
 
                 // 左上
-                if(clickedButton == up_L&&settable[1]){
+                if(clickedButton == up_L){
                     CheckAroundTile();
-                   // Debug.Log("Moved left up"); 
-                    Debug.Log("settable[1]"+settable[1]);
-                    direction = new Vector3(-0.4f,0.6f);
-                    player.GetComponent<MovementController>().transform.position += direction;
-                    player.GetComponent<MovementController>().UpdatePosition();
+                    if(settable[1]){
+                    // Debug.Log("Moved left up"); 
+                        Debug.Log("settable[1]"+settable[1]);
+                        direction = new Vector3(-0.4f,0.6f);
+                        player.GetComponent<MovementController>().transform.position += direction;
+                        player.GetComponent<MovementController>().UpdatePosition();
+                        
+                    }
                     CheckAroundTile();
-                    //Debug.Log("settable[1]"+settable[1]);
+                        //Debug.Log("settable[1]"+settable[1]);
                     
                     
                 }
 
                 // 左
-                if(clickedButton == mid_L&&settable[3]){
+                if(clickedButton == mid_L){
                     CheckAroundTile();
-                    //Debug.Log("Moved left middle");
-                    //Debug.Log("settable[3]"+settable[3]);
-                    direction = new Vector3(-0.8f,0,0);
-                    player.GetComponent<MovementController>().transform.position += direction;
-                    player.GetComponent<MovementController>().UpdatePosition();
+                    if(settable[3]){
+                        //Debug.Log("Moved left middle");
+                        //Debug.Log("settable[3]"+settable[3]);
+                        direction = new Vector3(-0.8f,0,0);
+                        player.GetComponent<MovementController>().transform.position += direction;
+                        player.GetComponent<MovementController>().UpdatePosition();
+                        
+                    }
                     CheckAroundTile();
                 }
 
                 // 左下
-                if(clickedButton == down_L&&settable[5]){
+                if(clickedButton == down_L){
                     CheckAroundTile();
-                    //Debug.Log("Moved left down");
-                   // Debug.Log("settable[5]"+settable[5]);
-                    direction = new Vector3(-0.4f,-0.6f);
-                    player.GetComponent<MovementController>().transform.position += direction;
-                    player.GetComponent<MovementController>().UpdatePosition();
+                    if(settable[5]){
+                        //Debug.Log("Moved left down");
+                    // Debug.Log("settable[5]"+settable[5]);
+                        direction = new Vector3(-0.4f,-0.6f);
+                        player.GetComponent<MovementController>().transform.position += direction;
+                        player.GetComponent<MovementController>().UpdatePosition();
+                    }
                     CheckAroundTile();
                 }
 
@@ -132,7 +150,11 @@ public class ActControllerManager : MonoBehaviour
     public void CheckAroundTile()
     {   
         Vector3Int[] pos = new Vector3Int[6];
+        TileBase[] movableTile = new TileBase[6];
         Color[] poscolor = new Color[6] ;
+        Vector3Int unmovableTilePos= hexTile.WorldToCell(new Vector3(-6.35f,-4.8f));
+
+        TileBase unmovableTile =hexTile.GetTile(unmovableTilePos);
         int length = 6;
          pos[0] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
          pos[1] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.4f,0.6f));//左斜め上
@@ -145,12 +167,17 @@ public class ActControllerManager : MonoBehaviour
         {   
             //Debug.Log("pos"+i+"="+pos[i]);
             poscolor[i]=hexTile.GetColor(pos[i]);
+            movableTile[i]=hexTile.GetTile(pos[i]);
             settable[i]=false;
+            Debug.Log("movableTile"+i+"="+hexTile.GetTile(pos[i]));
             if(poscolor[i]==Color.white)//タイルが白いかをチェック
             {
-                settable[i]=true;
+                if(movableTile[i]!=unmovableTile)//タイルが移動可能なものかをチェック
+                {
+                    settable[i]=true;
+                }
+                Debug.Log("settable"+i+"="+settable[i]);
             }
-            //Debug.Log("settable"+i+"="+settable[i]);
         }
         
 
@@ -165,7 +192,7 @@ public class ActControllerManager : MonoBehaviour
         {
             movable = false;
         }
-
+        Debug.Log("unmovableTile="+unmovableTile);
             
     }
 
