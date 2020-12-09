@@ -15,18 +15,18 @@ public class SceneChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*
         if(Input.GetMouseButtonDown (0)){
             SceneManager.LoadScene("Scene_Game");
         }
-        
+        */
         
     }
-    /*
+    
     public void OCSCButton()
     {
         SceneManager.LoadScene("Scene_Game");
         Debug.Log("pine") ;
     }
-    */
+    
 }
