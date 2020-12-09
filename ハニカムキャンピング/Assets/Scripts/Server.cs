@@ -17,10 +17,7 @@ public class Server : MonoBehaviour {
     
    
     void Awake ()
-        {   /*playercolor[0] = Color.blue;
-            playercolor[1] = Color.green;
-            playercolor[2] = Color.yellow;
-            */
+        {   
 
 
             UpdateTileColor(player[0],playercolor[0]);
@@ -33,7 +30,7 @@ public class Server : MonoBehaviour {
 
 
     void Start () {
-        var url = /*"172.16.98.82:8080";*/"ws://localhost:8080";
+        var url = /*"ws://172.16.98.82:8080";*/"ws://localhost:8080";
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
@@ -76,7 +73,7 @@ public class Server : MonoBehaviour {
         Vector3Int currentPlayerTile = Tilemap.WorldToCell(player.transform.position);//現在いるTileの座標を取得
         Tilemap.SetTileFlags(currentPlayerTile, TileFlags.None);//Tileのフラグをtrueに
         Tilemap.SetColor( currentPlayerTile, playercolor );//Tileのcolorをplayercolorに変更
-        Debug.Log(playercolor);
+        //Debug.Log(playercolor);
     }
 
     

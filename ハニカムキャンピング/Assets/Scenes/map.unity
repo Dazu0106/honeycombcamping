@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 155262945}
   - component: {fileID: 155262942}
   - component: {fileID: 155262941}
+  - component: {fileID: 155262940}
   m_Layer: 10
   m_Name: Bullet (3)
   m_TagString: Untagged
@@ -142,6 +143,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &155262940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155262939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f18dbf7b3e927458d92caa064c1e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInput: {x: 0, y: 0}
+  direction: {x: 0, y: 0, z: 0}
+  Tilemap: {fileID: 733144189}
+  tileColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!50 &155262941
 Rigidbody2D:
   serializedVersion: 4
@@ -4070,6 +4087,9 @@ GameObject:
   - component: {fileID: 816386640}
   - component: {fileID: 816386637}
   - component: {fileID: 816386636}
+  - component: {fileID: 816386639}
+  - component: {fileID: 816386638}
+  - component: {fileID: 816386635}
   m_Layer: 10
   m_Name: Bullet (1)
   m_TagString: Untagged
@@ -4077,6 +4097,49 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &816386635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816386634}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NotificationBehavior: 0
+  m_MaxPlayerCount: -1
+  m_AllowJoining: 1
+  m_JoinBehavior: 2
+  m_PlayerJoinedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_PlayerLeftEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_JoinAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: 0}
+  m_PlayerPrefab: {fileID: 0}
+  m_SplitScreen: 0
+  m_MaintainAspectRatioInSplitScreen: 0
+  m_FixedNumberOfSplitScreens: -1
+  m_SplitScreenRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!50 &816386636
 Rigidbody2D:
   serializedVersion: 4
@@ -4124,6 +4187,52 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5052681, y: 0.46407032}
   m_EdgeRadius: 0
+--- !u!114 &816386638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816386634}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: be9fc7d6ed59ace4bb456eeed05005a3, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &816386639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816386634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f18dbf7b3e927458d92caa064c1e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInput: {x: 0, y: 0}
+  direction: {x: 0, y: 0, z: 0}
+  Tilemap: {fileID: 733144189}
+  tileColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!212 &816386640
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4220,9 +4329,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player:
   - {fileID: 816386634}
-  - {fileID: 1834063426}
+  - {fileID: 1831242762}
   - {fileID: 155262939}
   Tilemap: {fileID: 733144189}
+  playercolor:
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!4 &1261990701
 Transform:
   m_ObjectHideFlags: 0
@@ -4348,6 +4461,7 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   direction: {x: 0, y: 0, z: 0}
   Tilemap: {fileID: 733144189}
+  tileColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!212 &1831242764
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4420,7 +4534,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831242762}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -4497,7 +4611,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831242762}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
@@ -4545,6 +4659,7 @@ GameObject:
   - component: {fileID: 1834063432}
   - component: {fileID: 1834063429}
   - component: {fileID: 1834063428}
+  - component: {fileID: 1834063427}
   m_Layer: 10
   m_Name: Bullet (2)
   m_TagString: Untagged
@@ -4552,6 +4667,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1834063427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834063426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f18dbf7b3e927458d92caa064c1e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInput: {x: 0, y: 0}
+  direction: {x: 0, y: 0, z: 0}
+  Tilemap: {fileID: 733144189}
+  tileColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!50 &1834063428
 Rigidbody2D:
   serializedVersion: 4

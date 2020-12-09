@@ -10,6 +10,7 @@ public class MovementController : MonoBehaviour
     public Vector2 movementInput;
     public Vector3 direction;
     public Tilemap Tilemap;
+    public Color tileColor;
 
     bool hasMoved;
 
@@ -80,7 +81,7 @@ public class MovementController : MonoBehaviour
     {   var tilemap = GetComponent<Tilemap>();
         Vector3Int currentPlayerTile = Tilemap.WorldToCell(transform.position);
         Tilemap.SetTileFlags(currentPlayerTile, TileFlags.None);//タイルのフラグをtrueに
-        Tilemap.SetColor( currentPlayerTile, Color.red );
+        Tilemap.SetColor( currentPlayerTile, tileColor );
          
 
          
