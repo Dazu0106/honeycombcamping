@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/*
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WebSocketSharp;
@@ -27,7 +28,7 @@ public class Server : MonoBehaviour {
 
 
     void Start () {
-        var url = /*"172.16.98.82:8080";*/"ws://localhost:8080";
+        var url = "ws://localhost:8080";
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
@@ -74,3 +75,4 @@ public class Server : MonoBehaviour {
 
     
 }
+*/
