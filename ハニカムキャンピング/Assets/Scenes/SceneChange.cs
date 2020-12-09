@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI ;
 using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
@@ -14,8 +15,18 @@ public class SceneChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(Input.GetMouseButtonDown (0)){
             SceneManager.LoadScene("Scene_Game");
         }
+        
+        
     }
+    /*
+    public void OCSCButton()
+    {
+        SceneManager.LoadScene("Scene_Game");
+        Debug.Log("pine") ;
+    }
+    */
 }
