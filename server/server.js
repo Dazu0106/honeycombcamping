@@ -6,6 +6,14 @@ const server = new WebSocketServer({
   port: 8080
 });
 
+
+let turnNumber = 0;
+var resultNum = 0 ;
+var GameJudge = false ;
+var order = [-1,-2,-3,-4] ;
+var rdy = [0,0,0,0] ;
+var wildCard = false;
+var CanMove = [1 , 1 , 1 , 1] ;
 // 接続時に呼ばれる
 server.on('connection', ws => {
     /*
@@ -15,13 +23,7 @@ server.on('connection', ws => {
     console.log(order[random]) ;
     */
 
-    let turnNumber = 0;
-    var resultNum = 0 ;
-    var GameJudge = false ;
-    var order = [-1,-1,-1,-1] ;
-    var rdy = [0,0,0,0] ;
-    var wildCard = false;
-    var CanMove = [1 , 1 , 1 , 1] ;
+
     ws.on('message' , message =>
     {
         console.log(message) ;
@@ -29,6 +31,8 @@ server.on('connection', ws => {
         {
             var rdygo = 0;
             rdy[rdygo] = 1 ;
+
+
             if(rdy[3]==1)
             {
                 server.clients.forEach(server =>
@@ -61,7 +65,9 @@ server.on('connection', ws => {
             server.clients.forEach(client =>
                 {
                     client.send(resultNum + result) ;
+                });
                     resultNum++ ;
+            server.clients.forEach(client =>{
                     client.send("resultcheck" + resultNum);
                 });
         }
@@ -90,20 +96,23 @@ server.on('connection', ws => {
             server.clients.forEach(client => 
                 {
                     client.send("order"+order[0]+order[1]+order[2]+order[3]) ;
+                });
                     while(CanMove[order[turnNumber]] == -1)
                     {
                         turnNumber++ ;
                         if(turnNumber > 4) 
                         {
                             GameJudge = true ;
-                            client.send("GameSet") ;
+                            server.clients.forEach(client =>{
+                                client.send("GameSet") ;
+                            }) ;
                             break ;
                         }
                     }
                     if(GameJudge != true)
-                    client.send("Start," + order[turnNumber] ) ;
-                    
-                });
+                    server.clients.forEach(client =>{
+                        client.send("Start," + order[turnNumber] ) ;
+                    });
         }
 
         if(message == "wildC")
@@ -116,19 +125,19 @@ server.on('connection', ws => {
         {
             CanMove[order[turnNumber]] = -1 ;
             turnNumber++ ;
-
-            server.clients.forEach(client =>
-                {
                     if(turnNumber < 4 )
                     {
-                        client.send("Start," + order[turnNumber]) ;
+                        server.clients.forEach(client =>{
+                            client.send("Start," + order[turnNumber]) ;
+                        });
                     }
                     else
                     {
-                        client.send("turnAround") ;
+                        server.clients.forEach(client =>{
+                            client.send("turnAround") ;
+                        });
                         turnNumber = 0 ;
                     }
-                })
         }
 
 
@@ -169,28 +178,32 @@ server.on('connection', ws => {
             {
                 CanMove[order[turnNumber]] = -1 ;
             }
-
-            server.clients.forEach(client =>
-                {
-                    if(wildCard)
+                    if(wildCard == true)
                     {
-                        client.send(  Destination +','+ order[turnNumber]) ;
+                        server.clients.forEach(client =>{
+                            client.send(  Destination +','+ order[turnNumber]) ;
+                        });
                         wildCard = false ;
                     }
                     else
                     {
-                        client.send( Destination + "," + order[turnNumber]) ;
+                        server.clients.forEach(client =>{
+                            client.send( Destination + "," + order[turnNumber]) ;
+                        }) ;
                         turnNumber++ ;
                     }
                     if(turnNumber < 4)
-                        client.send("Start," + order[turnNumber]) ;
+                        server.clients.forEach(client =>{
+                            client.send("Start," + order[turnNumber]) ;
+                        });
                     else
                     {
-                        client.send("turnAround") ;
+                        server.clients.forEach(client =>{
+                            client.send("turnAround") ;
+                        });
                         turnNumber = 0 ;
 
                     }
-                }) ;
         }
     });
 
