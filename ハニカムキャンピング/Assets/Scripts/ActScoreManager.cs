@@ -1,12 +1,14 @@
-﻿/*using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WebSocketSharp;
 using System;
+using UnityEngine.UI;
 
-public class result : MonoBehaviour
+public class ActScoreManager : MonoBehaviour
 {
     public WebSocket ws;
+    public GameObject score_object=null;
     // Start is called before the first frame update
     void Start(){
         var url = "ws://172.16.98.82:8080";
@@ -21,9 +23,9 @@ public class result : MonoBehaviour
     public string s2;
     void ExecuteSort(){
         int[] player;       //プレイヤーの定義
-        player=new int[4];　
+        player=new int[4];
 
-        int u=int.Parse(s1);
+        /*int u=int.Parse(s1);
         if(u==0){
             int w=int.Parse(s2);
             player[0]=w;
@@ -36,14 +38,14 @@ public class result : MonoBehaviour
         }else if(u==3){
             int z=int.Parse(s2);
             player[3]=z;
-        }
+        }*/
 
 
 
 
 
 
-        /*player[0]=19;       //サーバからの値を格納
+        player[0]=19;       //サーバからの値を格納
         player[1]=26;
         player[2]=40;
         player[3]=50;
@@ -268,12 +270,15 @@ public class result : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string s= message;
+        /*string s= message;
         string s1=s.Substring(0,1);
         string s2=s.Substring(1,2);
         if(Input.GetKey(KeyCode.A)){
         ExecuteSort();　　　//関数呼び出し
-        }
+        }*/
+        Text score_text = score_object.GetComponent<Text> ();
+        // テキストの表示を入れ替える
+        score_text.text = "000000";
 
     }
 
@@ -281,6 +286,4 @@ public class result : MonoBehaviour
     {   
         text=message;
     }
-}*/
-
-
+}
