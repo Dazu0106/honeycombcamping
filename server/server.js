@@ -24,6 +24,7 @@ server.on('connection', ws => {
     var CanMove = [1 , 1 , 1 , 1] ;
     ws.on('message' , message =>
     {
+        console.log(message) ;
         if(message == "ready")
         {
             var rdygo = 0;
@@ -159,9 +160,9 @@ server.on('connection', ws => {
             {
                 Destination = "Lfront" ;
             }
-            else if(~messa.indexOf("timeover"))
+            else if(~message.indexOf("timeover"))
             {
-                Destination = "None"
+                Destination = "None" ;
             }
 
             if(~message.indexOf("Stop"))
