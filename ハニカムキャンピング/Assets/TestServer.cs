@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WebSocketSharp ;
 
-public class Server : MonoBehaviour {
+public class TestServer : MonoBehaviour {
     private int count = 0; // click counter
     public WebSocket ws;
     void Start () {
