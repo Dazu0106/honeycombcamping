@@ -9,19 +9,25 @@ public class Server : MonoBehaviour {
     public WebSocket ws;
     public GameObject[] player;
     public Tilemap Tilemap;
-    private Color[] playercolor = new Color[3];
     private string text="";
+    public Color[] playercolor;
+    
 
+    　
+    
    
     void Awake ()
-        {   
-            playercolor[0] = Color.blue;
+        {   /*playercolor[0] = Color.blue;
             playercolor[1] = Color.green;
             playercolor[2] = Color.yellow;
+            */
+
 
             UpdateTileColor(player[0],playercolor[0]);
             UpdateTileColor(player[1],playercolor[1]);
             UpdateTileColor(player[2],playercolor[2]);
+            
+            
             
         }
 
@@ -70,6 +76,7 @@ public class Server : MonoBehaviour {
         Vector3Int currentPlayerTile = Tilemap.WorldToCell(player.transform.position);//現在いるTileの座標を取得
         Tilemap.SetTileFlags(currentPlayerTile, TileFlags.None);//Tileのフラグをtrueに
         Tilemap.SetColor( currentPlayerTile, playercolor );//Tileのcolorをplayercolorに変更
+        Debug.Log(playercolor);
     }
 
     
