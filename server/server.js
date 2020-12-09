@@ -62,7 +62,7 @@ server.on('connection', ws => {
                 {
                     client.send(resultNum + result) ;
                     resultNum++ ;
-                    client.send(resultNum + "resultcheck");
+                    client.send("resultcheck" + resultNum);
                 });
         }
 
@@ -101,7 +101,7 @@ server.on('connection', ws => {
                         }
                     }
                     if(GameJudge != true)
-                    client.send(order[turnNumber] + ",Start") ;
+                    client.send("Start," + order[turnNumber] ) ;
                     
                 });
         }
@@ -121,7 +121,7 @@ server.on('connection', ws => {
                 {
                     if(turnNumber < 4 )
                     {
-                        client.send(order[turnNumber] + ",Start") ;
+                        client.send("Start," + order[turnNumber]) ;
                     }
                     else
                     {
@@ -174,16 +174,16 @@ server.on('connection', ws => {
                 {
                     if(wildCard)
                     {
-                        client.send(order[turnNumber] +','+ Destination) ;
+                        client.send(  Destination +','+ order[turnNumber]) ;
                         wildCard = false ;
                     }
                     else
                     {
-                        client.send(order[turnNumber] + ',' + Destination) ;
+                        client.send( Destination + "," + order[turnNumber]) ;
                         turnNumber++ ;
                     }
                     if(turnNumber < 4)
-                        client.send(order[turnNumber] + ",Start") ;
+                        client.send("Start," + order[turnNumber]) ;
                     else
                     {
                         client.send("turnAround") ;
