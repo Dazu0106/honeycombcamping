@@ -27,10 +27,10 @@ public class wildbutton : MonoBehaviour
 
     public void Onclick()
     {
-        if(i==0){
-            Debug.Log("tamesi");
+        if(i<5){
+            // Debug.Log("tamesi");
             ws.Send("wildC");
-            ws.Send("TurnEndRfront") ;
+            // ws.Send("TurnEndRfront") ;
             i=i+1;
         }
     }
