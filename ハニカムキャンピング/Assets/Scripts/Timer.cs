@@ -46,6 +46,7 @@ public class Timer : MonoBehaviour
 
         if(text == (playerNum + ",Start"))
         {
+            TurnFlag = true ;
             countdown = 10.0f ;
             text = "" ;
         }
