@@ -87,7 +87,7 @@ public class ActControllerManager : MonoBehaviour
                     CheckAroundTile();
                     if(settable[4]){
                         //Debug.Log("Moved right down");
-                        Debug.Log("settable[4]"+settable[4]);
+                        //Debug.Log("settable[4]"+settable[4]);
                         direction = new Vector3(0.4f,-0.6f);
                         player.GetComponent<MovementController>().transform.position += direction;
                         player.GetComponent<MovementController>().UpdatePosition();
@@ -104,7 +104,7 @@ public class ActControllerManager : MonoBehaviour
                     CheckAroundTile();
                     if(settable[1]){
                     // Debug.Log("Moved left up"); 
-                        Debug.Log("settable[1]"+settable[1]);
+                        //Debug.Log("settable[1]"+settable[1]);
                         direction = new Vector3(-0.4f,0.6f);
                         player.GetComponent<MovementController>().transform.position += direction;
                         player.GetComponent<MovementController>().UpdatePosition();
@@ -169,14 +169,14 @@ public class ActControllerManager : MonoBehaviour
             poscolor[i]=hexTile.GetColor(pos[i]);
             movableTile[i]=hexTile.GetTile(pos[i]);
             settable[i]=false;
-            Debug.Log("movableTile"+i+"="+hexTile.GetTile(pos[i]));
+            //Debug.Log("movableTile"+i+"="+hexTile.GetTile(pos[i]));
             if(poscolor[i]==Color.white)//タイルが白いかをチェック
             {
                 if(movableTile[i]!=unmovableTile)//タイルが移動可能なものかをチェック
                 {
                     settable[i]=true;
                 }
-                Debug.Log("settable"+i+"="+settable[i]);
+                //Debug.Log("settable"+i+"="+settable[i]);
             }
         }
         
@@ -192,7 +192,7 @@ public class ActControllerManager : MonoBehaviour
         {
             movable = false;
         }
-        Debug.Log("unmovableTile="+unmovableTile);
+        //Debug.Log("unmovableTile="+unmovableTile);
             
     }
 
