@@ -7,23 +7,21 @@ using UnityEngine.Tilemaps;
 public class Server : MonoBehaviour {
     private int count = 0; // click counter
     public WebSocket ws;
-    public GameObject player1,player2,player3;
+    public GameObject[] player;
     public Tilemap Tilemap;
-    private Color player1color,player2color,player3color;
+    private Color[] playercolor = new Color[3];
     private string text="";
-    public bool fr,fl,r,l,br,bl;//右上、左上、右、左、右下、左下
-   
 
    
     void Awake ()
         {   
-            player1color = Color.blue;
-            player2color = Color.green;
-            player3color = Color.yellow;
+            playercolor[0] = Color.blue;
+            playercolor[1] = Color.green;
+            playercolor[2] = Color.yellow;
 
-            UpdateTileColor(player1,player1color);
-            UpdateTileColor(player2,player2color);
-            UpdateTileColor(player3,player3color);
+            UpdateTileColor(player[0],playercolor[0]);
+            UpdateTileColor(player[1],playercolor[1]);
+            UpdateTileColor(player[2],playercolor[2]);
             
         }
 
@@ -38,16 +36,13 @@ public class Server : MonoBehaviour {
     void Update () {
        if(text=="order") 
        {
-           if(CheckAroundTile(player1))
-            {
-                player1.transform.position+=new Vector3(0.8f,0,0);
-            }
-            player2.transform.position+=new Vector3(-0.4f,-0.6f);
-            player3.transform.position+=new Vector3(-0.4f,0.6f);
+            player[0].transform.position+=new Vector3(0.8f,0,0);
+            player[1].transform.position+=new Vector3(-0.4f,-0.6f);
+            player[2].transform.position+=new Vector3(-0.4f,0.6f);
             
-            UpdateTileColor(player1,player1color);
-            UpdateTileColor(player2,player2color);
-            UpdateTileColor(player3,player3color);
+            UpdateTileColor(player[0],playercolor[0]);
+            UpdateTileColor(player[1],playercolor[1]);
+            UpdateTileColor(player[2],playercolor[2]);
             text="";
             
            
@@ -75,82 +70,7 @@ public class Server : MonoBehaviour {
         Vector3Int currentPlayerTile = Tilemap.WorldToCell(player.transform.position);//現在いるTileの座標を取得
         Tilemap.SetTileFlags(currentPlayerTile, TileFlags.None);//Tileのフラグをtrueに
         Tilemap.SetColor( currentPlayerTile, playercolor );//Tileのcolorをplayercolorに変更
-        print(playercolor);
     }
-    public bool CheckAroundTile(GameObject player)
-    {   
-        Vector3Int uRPos = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
-        Vector3Int uLPos = Tilemap.WorldToCell(player.transform.position+new Vector3(0.4f,-0.6f));//左斜め上
-        Vector3Int rPos = Tilemap.WorldToCell(player.transform.position+new Vector3(0.8f,0,0));//真右
-        Vector3Int lPos = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.8f,0,0));//真左
-        Vector3Int dRPos = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.4f,0.6f)); //右斜め下
-        Vector3Int dLPos = Tilemap.WorldToCell(player.transform.position+new Vector3(-0.4f,-0.6f));//左斜め下
 
-        Color uRC=Tilemap.GetColor(uRPos);
-        Color uLC=Tilemap.GetColor(uLPos);
-        Color rC=Tilemap.GetColor(rPos);
-        Color lC=Tilemap.GetColor(lPos);
-        Color dRC=Tilemap.GetColor(dRPos);
-        Color dLC=Tilemap.GetColor(dLPos);
-
-        fr=false;
-        fl=false;
-        r=false;
-        l=false;
-        br=false;
-        bl=false;
-
-
-        if(uRC==Color.white)
-        {
-            fr = true;
-            
-        }
-        if(uLC==Color.white)
-        {
-            fl = true;
-            
-        }
-        if(rC==Color.white)
-        {
-            r = true;
-            
-        }
-        if(lC==Color.white)
-        {
-            l = true;
-            
-        }
-        if(dRC==Color.white)
-        {
-            br = true;
-            
-        }
-        if(dLC==Color.white)
-        {
-            bl = true;
-            
-        }
-
-        if( fr || fl|| r || l || br || bl)
-        {
-            return true;
-            
-            fr=false;
-            fl=false;
-            r=false;
-            l=false;
-            br=false;
-            bl=false;
-        }
-            fr=false;
-            fl=false;
-            r=false;
-            l=false;
-            br=false;
-            bl=false;
-
-
-        return false;
-    }
+    
 }
