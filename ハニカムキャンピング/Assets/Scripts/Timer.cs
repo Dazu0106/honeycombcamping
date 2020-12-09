@@ -40,7 +40,7 @@ public class Timer : MonoBehaviour
         {
 
             timeText.text = "時間になりました！";
-            ws.Send("turnEnd,timeover") ;
+            ws.Send("TurnEnd,timeover") ;
             TurnFlag = false ;
         }
 
@@ -54,6 +54,7 @@ public class Timer : MonoBehaviour
     public void TextWrite(string message)
     {
         text = message ;
+        Debug.Log(text) ;
     }
 }
 
