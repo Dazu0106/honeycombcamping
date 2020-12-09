@@ -49,7 +49,7 @@ server.on('connection', ws => {
         {
             server.clients.forEach(client =>
                 {
-                    client.send(resultNum + "resultcheck") ;
+                    client.send("resultcheck" + resultNum ) ;
                 });
         }
 
