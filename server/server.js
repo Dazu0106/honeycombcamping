@@ -1,12 +1,12 @@
 // WebSocketのサーバの生成
 //let ws = require('ws')
-//var server = new ws.Server({port:5001});
+//var server = new ws.Server({port:8080});
 const WebSocketServer = require('ws').Server;
 const server = new WebSocketServer({
   port: 8080
 });
 
-
+//サーバーが持ってる変数の初期値
 let turnNumber = 0;
 var resultNum = 0 ;
 var GameJudge = false ;
@@ -14,6 +14,7 @@ var order = [-1,-2,-3,-4] ;
 var rdy = [0,0,0,0] ;
 var wildCard = false;
 var CanMove = [1 , 1 , 1 , 1] ;
+
 // 接続時に呼ばれる
 server.on('connection', ws => {
     /*
@@ -23,10 +24,11 @@ server.on('connection', ws => {
     console.log(order[random]) ;
     */
 
-
+//メッセージ受信時に呼ばれる
     ws.on('message' , message =>
     {
-        console.log(message) ;
+        //console.log(message) ;
+        //4人の準備完了を待機
         if(message == "ready")
         {
             var rdygo = 0;
@@ -49,6 +51,8 @@ server.on('connection', ws => {
             rdygo++ ;
         }
 
+        //ゲームセットを送り返してもらってゲーム終了のメッセージ
+        //プレイヤー0のリザルトチェック
         if(message == "GameSet")
         {
             server.clients.forEach(client =>
@@ -56,7 +60,7 @@ server.on('connection', ws => {
                     client.send("resultcheck" + resultNum ) ;
                 });
         }
-
+        //プレイヤー1~3までのリザルトチェック
         if(~message.indexOf("result"))
         {
             var result = "" ;
@@ -72,6 +76,7 @@ server.on('connection', ws => {
                 });
         }
 
+        //ゲーム開始時の順番決め
         if(message == "order")
         {
             turnNumber = 0 ;
@@ -115,12 +120,14 @@ server.on('connection', ws => {
                     });
         }
 
+        //ワイルドカード使用
         if(message == "wildC")
         {
             //ワイルドカードの挙動を書く
             wildCard = true ;
         }
 
+        //ターンの始めの移動不可判定
         if(message == "cantMove")
         {
             CanMove[order[turnNumber]] = -1 ;
@@ -134,13 +141,16 @@ server.on('connection', ws => {
                     else
                     {
                         server.clients.forEach(client =>{
-                            client.send("turnAround") ;
+                            client.send("turnAround") ; 
                         });
                         turnNumber = 0 ;
                     }
+
+                    //ここでturnAroundしてるのはorderの中にゲームセット判定があるから
         }
 
 
+        //プレイヤーの移動先のメッセージ
         var pattern = "TurnEnd" ;
         var Destination = 'minus1' ;
         if(!message.indexOf(pattern))
@@ -171,32 +181,34 @@ server.on('connection', ws => {
             }
             else if(~message.indexOf("timeover"))
             {
-                Destination = "None" ;
+                Destination = "None" ;  //時間切れ(移動なし)
             }
 
+
+            //移動した後の移動不可判定
             if(~message.indexOf("Stop"))
             {
                 CanMove[order[turnNumber]] = -1 ;
             }
-                    if(wildCard == true)
+                    if(wildCard == true)    //ワイルドカード使ってたらもう一回
                     {
                         server.clients.forEach(client =>{
-                            client.send(  Destination +','+ order[turnNumber]) ;
+                            client.send(  Destination +','+ order[turnNumber]) ;    //移動先+プレイヤーの番号
                         });
                         wildCard = false ;
                     }
-                    else
+                    else    //使ってないなら次の人
                     {
                         server.clients.forEach(client =>{
                             client.send( Destination + "," + order[turnNumber]) ;
                         }) ;
                         turnNumber++ ;
                     }
-                    if(turnNumber < 4)
+                    if(turnNumber < 4)  //ターンが一周してないとき
                         server.clients.forEach(client =>{
                             client.send("Start," + order[turnNumber]) ;
                         });
-                    else
+                    else    //ターンが一周したらturnAroundでorderを送ってもらう
                     {
                         server.clients.forEach(client =>{
                             client.send("turnAround") ;
