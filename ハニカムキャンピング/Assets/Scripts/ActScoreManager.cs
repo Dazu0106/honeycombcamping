@@ -8,7 +8,10 @@ using UnityEngine.UI;
 public class ActScoreManager : MonoBehaviour
 {
     public WebSocket ws;
-    public GameObject score_object=null;
+    public GameObject score_object1=null;
+    public GameObject score_object2=null;
+    public GameObject score_object3=null;
+    public GameObject score_object4=null;
     // Start is called before the first frame update
     void Start(){
         var url = "ws://172.16.98.82:8080";
@@ -21,11 +24,23 @@ public class ActScoreManager : MonoBehaviour
     public string message;
     public string s1;
     public string s2;
+    public int u;
+    public int w;
+    public int x;
+    public int y;
+    public int z;
     void ExecuteSort(){
         int[] player;       //プレイヤーの定義
         player=new int[4];
+        player[0]=26;       //サーバからの値を格納
+        player[1]=40;
+        player[2]=19;
+        player[3]=50;
+        
+        if(text=="resultch")
 
-        /*int u=int.Parse(s1);
+
+        int u=int.Parse(s1);
         if(u==0){
             int w=int.Parse(s2);
             player[0]=w;
@@ -38,17 +53,17 @@ public class ActScoreManager : MonoBehaviour
         }else if(u==3){
             int z=int.Parse(s2);
             player[3]=z;
-        }*/
+        }
 
 
 
 
 
 
-        player[0]=19;       //サーバからの値を格納
-        player[1]=26;
-        player[2]=40;
-        player[3]=50;
+        /*player[0]=26;       //サーバからの値を格納
+        player[1]=40;
+        player[2]=19;
+        player[3]=50;*/
 
         int a=player[0];    //ソートする前に値を保存
         int b=player[1];
@@ -78,189 +93,195 @@ public class ActScoreManager : MonoBehaviour
         int f=b;
         int g=c;
         int h=d; 
-        
+
+        Text score_text1 = score_object1.GetComponent<Text> ();
+        Text score_text2 = score_object2.GetComponent<Text> ();
+        Text score_text3 = score_object3.GetComponent<Text> ();
+        Text score_text4 = score_object4.GetComponent<Text> ();
+
         if(e==player[3]){　　　　//243行目まででソートした値とプレイヤー名を一致させる
             player[3]=e;
-            Debug.Log("player0 "+player[3]);
+            score_text1.text = "player0 "+player[3];
             if(f==player[2]){
                 player[2]=f;
-                Debug.Log("player1 "+player[2]);
+                score_text2.text = "player1 "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=h;
-                    Debug.Log("player2 "+player[1]);
-                    Debug.Log("player3 "+player[0]);
+                    score_text3.text = "player2 "+player[1];
+                    score_text4.text = "player3 "+player[0];
+                    
                 }else if(h==player[1]){
                     player[1]=h;
                     player[0]=g;
-                    Debug.Log("player3 "+player[1]);
-                    Debug.Log("player2 "+player[0]);
+                    score_text3.text = "player3 "+player[1];
+                    score_text4.text = "player2 "+player[0];
                 }
             }else if(g==player[2]){
                 player[2]=g;
-                Debug.Log("player2 "+player[2]);
+                score_text2.text = "player2 "+player[2];
                 if(h==player[1]){
                     player[1]=h;
                     player[0]=f;
-                    Debug.Log("player3 "+player[1]);
-                    Debug.Log("player1 "+player[0]);
+                    score_text3.text = "player3 "+player[1];
+                    score_text4.text = "player1 "+player[0];
                 }else if(f==player[1]){
                     player[0]=h;
                     player[1]=f;
-                    Debug.Log("player1 "+player[1]);
-                    Debug.Log("player3 "+player[0]);
+                    score_text3.text = "player1 "+player[1];
+                    score_text4.text = "player3 "+player[0];
                 }
             }else if(h==player[2]){
                 player[2]=h;
-                Debug.Log("player3 "+player[2]);
+                score_text2.text = "player3 "+player[2];
                 if(f==player[1]){
                     player[1]=f;
                     player[0]=g;
-                    Debug.Log("player1 "+player[1]);
-                    Debug.Log("player2 "+player[0]);
+                    score_text3.text = "player1 "+player[1];
+                    score_text4.text = "player2 "+player[0];
                 }else if(g==player[1]){
                     player[1]=g;
                     player[0]=f;
-                    Debug.Log("player2 "+player[1]);
-                    Debug.Log("player1 "+player[0]);
+                    score_text3.text = "player2 "+player[1];
+                    score_text4.text = "player1 "+player[0];
                 }
             }
         }else if(f==player[3]){
             player[3]=f;
-            Debug.Log("player1 "+player[3]);
+            score_text1.text = "player1 "+player[3];
             if(g==player[2]){
                 player[2]=g;
-                Debug.Log("player2 "+player[2]);
+                score_text2.text = "player2 "+player[2];
                 if(h==player[1]){
                     player[1]=h;
                     player[0]=e;
-                    Debug.Log("player3 "+player[1]);
-                    Debug.Log("player0 "+player[0]);
+                    score_text3.text = "player3 "+player[1];
+                    score_text4.text = "player0 "+player[0];
                 }else if(e==player[1]){
                     player[1]=e;
                     player[0]=h;
-                    Debug.Log("player0 "+player[1]);
-                    Debug.Log("player3 "+player[0]);
+                    score_text3.text = "player0 "+player[1];
+                    score_text4.text = "player3 "+player[0];
                 }
             }else if(h==player[2]){
                 player[2]=h;
-                Debug.Log("player3 "+player[2]);
+                score_text2.text = "player3 "+player[2];
                 if(e==player[1]){
                     player[1]=e;
                     player[0]=g;
-                    Debug.Log("player0 "+player[1]);
-                    Debug.Log("player2 "+player[0]);
+                    score_text3.text = "player0 "+player[1];
+                    score_text4.text = "player2 "+player[0];
                 }else if(g==player[1]){
                     player[0]=e;
                     player[1]=g;
-                    Debug.Log("player2 "+player[1]);
-                    Debug.Log("player0 "+player[0]);
+                    score_text3.text = "player2 "+player[1];
+                    score_text4.text = "player0 "+player[0];
                 }
             }else if(e==player[2]){
                 player[2]=e;
-                Debug.Log("player0 "+player[2]);
+                score_text2.text = "player0 "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=h;
-                    Debug.Log("player2 "+player[1]);
-                    Debug.Log("player3 "+player[0]);
+                    score_text3.text = "player2 "+player[1];
+                    score_text4.text = "player3 "+player[0];
                 }else if(h==player[1]){
                     player[1]=h;
                     player[0]=g;
-                    Debug.Log("player3 "+player[1]);
-                    Debug.Log("player2 "+player[0]);
+                    score_text3.text = "player3 "+player[1];
+                    score_text4.text = "player2 "+player[0];
                 }
             }
         }else if(g==player[3]){
             player[3]=g;
-            Debug.Log("player2 "+player[3]);
+            score_text1.text = "player2 "+player[3];
             if(f==player[2]){
                 player[2]=f;
-                Debug.Log("player1 "+player[2]);
+                score_text2.text = "player1 "+player[2];
                 if(e==player[1]){
                     player[1]=e;
                     player[0]=h;
-                    Debug.Log("player0 "+player[1]);
-                    Debug.Log("player3 "+player[0]);
+                    score_text3.text = "player0 "+player[1];
+                    score_text4.text = "player3 "+player[0];
                 }else if(h==player[1]){
                     player[0]=e;
                     player[1]=h;
-                    Debug.Log("player3 "+player[1]);
-                    Debug.Log("player0 "+player[0]);
+                    score_text3.text = "player3 "+player[1];
+                    score_text4.text = "player0 "+player[0];
                 }
             }else if(e==player[2]){
                 player[2]=e;
-                Debug.Log("player0 "+player[2]);
+                score_text2.text = "player0 "+player[2];
                 if(h==player[1]){
                     player[1]=h;
                     player[0]=f;
-                    Debug.Log("player3 "+player[1]);
-                    Debug.Log("player1 "+player[0]);
+                    score_text3.text = "player3 "+player[1];
+                    score_text4.text = "player1 "+player[0];
                 }else if(f==player[1]){
                     player[0]=h;
                     player[1]=f;
-                    Debug.Log("player1 "+player[1]);
-                    Debug.Log("player3 "+player[0]);
+                    score_text3.text = "player1 "+player[1];
+                    score_text4.text = "player3 "+player[0];
                 }
             }else if(h==player[2]){
                 player[2]=h;
-                Debug.Log("player3 "+player[2]);
+                score_text2.text = "player3 "+player[2];
                 if(f==player[1]){
                     player[1]=f;
                     player[0]=e;
-                    Debug.Log("player1 "+player[1]);
-                    Debug.Log("player0 "+player[0]);
+                    score_text3.text = "player1 "+player[1];
+                    score_text4.text = "player0 "+player[0];
                 }else if(e==player[1]){
                     player[1]=e;
                     player[0]=f;
-                    Debug.Log("player0 "+player[1]);
-                    Debug.Log("player1 "+player[0]);
+                    score_text3.text = "player0 "+player[1];
+                    score_text4.text = "player1 "+player[0];
                 }
             }
         }else if(h==player[3]){
             player[3]=h;
-            Debug.Log("player3 "+player[3]);
+            score_text1.text = "player3 "+player[3];
             if(e==player[2]){
                 player[2]=e;
-                Debug.Log("player0 "+player[2]);
+                score_text2.text = "player0 "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=f;
-                    Debug.Log("player2 "+player[1]);
-                    Debug.Log("player1 "+player[0]);
+                    score_text3.text = "player2 "+player[1];
+                    score_text4.text = "player1 "+player[0];
                 }else if(f==player[1]){
                     player[0]=g;
                     player[1]=f;
-                    Debug.Log("player1 "+player[1]);
-                    Debug.Log("player2 "+player[0]);
+                    score_text3.text = "player1 "+player[1];
+                    score_text4.text = "player2 "+player[0];
                 }
             }else if(f==player[2]){
                 player[2]=f;
-                Debug.Log("player1 "+player[2]);
+                score_text2.text = "player1 "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=e;
-                    Debug.Log("player2 "+player[1]);
-                    Debug.Log("player0 "+player[0]);
+                    score_text3.text = "player2 "+player[1];
+                    score_text4.text = "player0 "+player[0];
                 }else if(e==player[1]){
                     player[0]=g;
                     player[1]=e;
-                    Debug.Log("player0 "+player[1]);
-                    Debug.Log("player2 "+player[0]);
+                    score_text3.text = "player0 "+player[1];
+                    score_text4.text = "player2 "+player[0];
                 }
             }else if(g==player[2]){
                 player[2]=g;
-                Debug.Log("player2 "+player[2]);
+                score_text2.text = "player2 "+player[2];
                 if(f==player[1]){
                     player[1]=f;
                     player[0]=e;
-                    Debug.Log("player1 "+player[1]);
-                    Debug.Log("player0 "+player[0]);
+                    score_text3.text = "player1 "+player[1];
+                    score_text4.text = "player0 "+player[0];
                 }else if(e==player[1]){
                     player[1]=e;
                     player[0]=f;
-                    Debug.Log("player0 "+player[1]);
-                    Debug.Log("player1 "+player[0]);
+                    score_text3.text = "player0 "+player[1];
+                    score_text4.text = "player1 "+player[0];
                 }
             }
         }
@@ -270,15 +291,13 @@ public class ActScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*string s= message;
+        string s= message;
         string s1=s.Substring(0,1);
         string s2=s.Substring(1,2);
         if(Input.GetKey(KeyCode.A)){
         ExecuteSort();　　　//関数呼び出し
-        }*/
-        Text score_text = score_object.GetComponent<Text> ();
-        // テキストの表示を入れ替える
-        score_text.text = "000000";
+        }
+        
 
     }
 
