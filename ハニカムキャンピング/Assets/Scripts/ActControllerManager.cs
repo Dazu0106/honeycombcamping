@@ -13,7 +13,7 @@ public class ActControllerManager : MonoBehaviour
     GameObject player;
 
     public Vector3 direction;
-
+    public string objectName;
     private Tilemap hexTile;
     private bool[] settable = new bool[6];//右上、左上、右、左、右下、左下の順で6つ
     private bool movable;//移動可能か
@@ -30,7 +30,7 @@ public class ActControllerManager : MonoBehaviour
         mid_L = GameObject.Find("Left middle");
         down_L = GameObject.Find("Left down");
 
-        player = GameObject.Find("Bullet");
+        player = GameObject.Find(objectName);
         hexTile = player.GetComponent<MovementController>().Tilemap;
 
         CheckAroundTile();
