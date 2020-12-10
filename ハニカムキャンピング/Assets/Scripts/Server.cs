@@ -6,27 +6,24 @@ using WebSocketSharp;
 using UnityEngine.Tilemaps;
 
 public class Server : MonoBehaviour {
-    private int count = 0; // click counter
     public WebSocket ws;
-    public GameObject[] player;
+    public GameObject[] player = new GameObject[3];
     public Tilemap Tilemap;
-    private string text="";
-    public Color[] playercolor;
+    public Color[] playercolor = new Color[3];
     
+    private string text="";
+    private string[] directionMsg = {"Rfront","Right","Rback","Lback","Left","Lfront"};
 
     　
     
    
     void Awake ()
-        {   
-
-
-            UpdateTileColor(player[0],playercolor[0]);
-            UpdateTileColor(player[1],playercolor[1]);
-            UpdateTileColor(player[2],playercolor[2]);
-            
-            
-            
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                UpdateTileColor(player[i],playercolor[i]);
+            }
+          
         }
 
 
@@ -38,8 +35,10 @@ public class Server : MonoBehaviour {
 
     }
     void Update () {
-       if(text=="order") 
+        //Debug.Log(directionMsg[0]+",0");
+       if(text==directionMsg[0]+",0") 
        {
+           
             player[0].transform.position+=new Vector3(0.8f,0,0);
             player[1].transform.position+=new Vector3(-0.4f,-0.6f);
             player[2].transform.position+=new Vector3(-0.4f,0.6f);
@@ -51,12 +50,7 @@ public class Server : MonoBehaviour {
             
            
        } 
-       if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("clicked!");
-            count++;
-            ws.Send("order");
-        }
+       
 
         
 
@@ -65,8 +59,7 @@ public class Server : MonoBehaviour {
 
     public void ReceivTest(string message)
     {   text=message;
-        
-        
+            
     }
 
     public void UpdateTileColor(GameObject player,Color playercolor)
