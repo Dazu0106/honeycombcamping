@@ -37,9 +37,8 @@ public class ActScoreManager : MonoBehaviour
         player[2]=19;
         player[3]=50;
         
-        if(text=="resultch")
-
-
+        
+        /*
         int u=int.Parse(s1);
         if(u==0){
             int w=int.Parse(s2);
@@ -54,7 +53,7 @@ public class ActScoreManager : MonoBehaviour
             int z=int.Parse(s2);
             player[3]=z;
         }
-
+        */
 
 
 
@@ -291,13 +290,40 @@ public class ActScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string s= message;
-        string s1=s.Substring(0,1);
-        string s2=s.Substring(1,2);
+        if((text.Substring(0.1) == "0")||(text.Substring(0.1) == "1")||(text.Substring(0.1) == "2")||(text.Substring(0.1) == "3"))
+        {
+            string s= "";
+            string s1= "";
+            s1 = s.Substring(0,1);
+            string s2="" ;
+            s2 = s.Substring(1,2);
+            int u=int.Parse(s1);
+            if(u==0){
+                int w=int.Parse(s2);
+                player[0]=w;
+            }else if(u==1){
+                int x=int.Parse(s2);
+                player[1]=x;
+            }else if(u==2){
+                int y=int.Parse(s2);
+                player[2]=y;
+            }else if(u==3){
+                int z=int.Parse(s2);
+                player[3]=z;
+            }
+            text = "" ;
+        }
         if(Input.GetKey(KeyCode.A)){
         ExecuteSort();　　　//関数呼び出し
         }
         
+        if(message.Contains("resultcheck")){
+            public int playernumber = -1 ;
+            playernumber = int.Parse(message.Substring(11));
+            ws.Send("result" + player[playernumber]) ;
+            text = "" ;
+        }
+
 
     }
 
