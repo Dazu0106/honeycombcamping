@@ -12,16 +12,8 @@ public class ActScoreManager : MonoBehaviour
     public GameObject score_object2=null;
     public GameObject score_object3=null;
     public GameObject score_object4=null;
-    // Start is called before the first frame update
-    void Start(){
-        var url = "ws://172.16.98.82:8080";
-        ws = new WebSocket(url);
-        ws.Connect();
-        ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
-
-    }
-    public string text;
-    public string message;
+    public string text = "testtest";
+    public string message = "testtest";
     public string s1;
     public string s2;
     public int u;
@@ -29,13 +21,26 @@ public class ActScoreManager : MonoBehaviour
     public int x;
     public int y;
     public int z;
-    void ExecuteSort(){
-        int[] player;       //プレイヤーの定義
-        player=new int[4];
+    public int[] player = new int[4];       //プレイヤーの定義
+    // Start is called before the first frame update
+    void Start(){
+        var url = "ws://172.16.98.82:8080";
+        ws = new WebSocket(url);
+        ws.Connect();
+        ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
         player[0]=26;       //サーバからの値を格納
         player[1]=40;
         player[2]=19;
         player[3]=50;
+    }
+    
+    void ExecuteSort(){
+        /*int[] player;       //プレイヤーの定義
+        player=new int[4];
+        player[0]=26;       //サーバからの値を格納
+        player[1]=40;
+        player[2]=19;
+        player[3]=50;*/
         
         
         /*
@@ -290,14 +295,15 @@ public class ActScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((text.Substring(0.1) == "0")||(text.Substring(0.1) == "1")||(text.Substring(0.1) == "2")||(text.Substring(0.1) == "3"))
+        if((text.Substring(0,1) == "0")||(text.Substring(0,1) == "1")||(text.Substring(0,1) == "2")||(text.Substring(0,1) == "3"))
         {
-            string s= "";
+            string s= text;
             string s1= "";
             s1 = s.Substring(0,1);
             string s2="" ;
             s2 = s.Substring(1,2);
             int u=int.Parse(s1);
+            
             if(u==0){
                 int w=int.Parse(s2);
                 player[0]=w;
@@ -311,17 +317,17 @@ public class ActScoreManager : MonoBehaviour
                 int z=int.Parse(s2);
                 player[3]=z;
             }
-            text = "" ;
+            text = "testtest" ;
         }
         if(Input.GetKey(KeyCode.A)){
         ExecuteSort();　　　//関数呼び出し
         }
         
         if(message.Contains("resultcheck")){
-            public int playernumber = -1 ;
+            int playernumber = -1 ;
             playernumber = int.Parse(message.Substring(11));
             ws.Send("result" + player[playernumber]) ;
-            text = "" ;
+            text = "testtest" ;
         }
 
 
