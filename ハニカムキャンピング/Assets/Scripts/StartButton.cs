@@ -7,7 +7,7 @@ using WebSocketSharp;
 
 public class StartButton : MonoBehaviour
 {
-
+    public GameObject Button ;
     public WebSocket ws ;
     public string message  ;
     public string text = "" ;
@@ -18,18 +18,24 @@ public class StartButton : MonoBehaviour
         ws = new WebSocket(url) ;
         ws.Connect() ;
         ws.OnMessage += (sender , e) => TitleReceive(e.Data) ;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(text == "readygo")
+        {
+            SceneManager.LoadScene("Scene_Game") ;
+            text = "" ;
+        }   
     }
 
     public void OnclickStartButton()
     {
-        SceneManager.LoadScene("Scene_Game") ;
+        for(int i = 0 ; i < 4 ; i++)
         ws.Send("ready") ;
+        Button.SetActive(false) ;
     }
 
     public void TitleReceive(string message)
