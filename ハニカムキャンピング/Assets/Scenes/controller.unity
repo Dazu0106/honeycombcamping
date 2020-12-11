@@ -588,8 +588,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae322494ac5ef34db468257a97d84ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  up_R: {fileID: 919648069}
+  mid_R: {fileID: 917661142}
+  down_R: {fileID: 335234991}
+  up_L: {fileID: 1803110508}
+  mid_L: {fileID: 1256312767}
+  down_L: {fileID: 2040739661}
   direction: {x: 0, y: 0, z: 0}
-  Tilemap: {fileID: 0}
+  objectName: Bullet
 --- !u!1 &1256312767
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,42 +36,42 @@ public class Server : MonoBehaviour {
     }
     void Update () {
         //Debug.Log(directionMsg[0]+",0");
-        if(text==directionMsg[0]+",0") 
+        if(text==directionMsg[0]+",1") 
         {    
             player[0].transform.position+=new Vector3(0.4f,0.6f,0);//プレイヤー0が右上に移動
             UpdateTileColor(player[0],playercolor[0]);
             text="";
         }
 
-        if(text==directionMsg[1]+",0") 
+        if(text==directionMsg[1]+",1") 
         {    
             player[0].transform.position+=new Vector3(0.8f,0,0);//プレイヤー0が右に移動
             UpdateTileColor(player[0],playercolor[0]);
             text="";
         }   
         
-        if(text==directionMsg[2]+",0") 
+        if(text==directionMsg[2]+",1") 
         {    
             player[0].transform.position+=new Vector3(0.4f,-0.6f,0);//プレイヤー0が右下に移動
             UpdateTileColor(player[0],playercolor[0]);
             text="";
         }
         
-        if(text==directionMsg[3]+",0") 
+        if(text==directionMsg[3]+",1") 
         {    
             player[0].transform.position+=new Vector3(-0.4f,-0.6f,0);//プレイヤー0が左下に移動
             UpdateTileColor(player[0],playercolor[0]);
             text="";
         }
 
-        if(text==directionMsg[4]+",0") 
+        if(text==directionMsg[4]+",1") 
         {    
             player[0].transform.position+=new Vector3(-0.8f,0,0);//プレイヤー0が左に移動
             UpdateTileColor(player[0],playercolor[0]);
             text="";
         }
 
-        if(text==directionMsg[5]+",0") 
+        if(text==directionMsg[5]+",1") 
         {    
             player[0].transform.position+=new Vector3(-0.4f,0.6f,0);//プレイヤー0が左上に移動
             UpdateTileColor(player[0],playercolor[0]);
@@ -80,42 +80,42 @@ public class Server : MonoBehaviour {
 
 
         
-        if(text==directionMsg[0]+",1") 
+        if(text==directionMsg[0]+",2") 
         {    
             player[1].transform.position+=new Vector3(0.4f,0.6f,0);//プレイヤー1が右上に移動
             UpdateTileColor(player[1],playercolor[1]);
             text="";
         }
 
-        if(text==directionMsg[1]+",1") 
+        if(text==directionMsg[1]+",2") 
         {    
             player[1].transform.position+=new Vector3(0.8f,0,0);//プレイヤー1が右に移動
             UpdateTileColor(player[1],playercolor[1]);
             text="";
         }   
         
-        if(text==directionMsg[2]+",1") 
+        if(text==directionMsg[2]+",2") 
         {    
             player[1].transform.position+=new Vector3(0.4f,-0.6f,0);//プレイヤー1が右下に移動
             UpdateTileColor(player[1],playercolor[1]);
             text="";
         }
         
-        if(text==directionMsg[3]+",1") 
+        if(text==directionMsg[3]+",2") 
         {    
             player[1].transform.position+=new Vector3(-0.4f,-0.6f,0);//プレイヤー1が左下に移動
             UpdateTileColor(player[1],playercolor[1]);
             text="";
         }
 
-        if(text==directionMsg[4]+",1") 
+        if(text==directionMsg[4]+",2") 
         {    
             player[1].transform.position+=new Vector3(-0.8f,0,0);//プレイヤー1が左に移動
             UpdateTileColor(player[1],playercolor[1]);
             text="";
         }
 
-        if(text==directionMsg[5]+",1") 
+        if(text==directionMsg[5]+",2") 
         {    
             player[1].transform.position+=new Vector3(-0.4f,0.6f,0);//プレイヤー1が左上に移動
             UpdateTileColor(player[1],playercolor[1]);
@@ -124,42 +124,42 @@ public class Server : MonoBehaviour {
 
 
 
-        if(text==directionMsg[0]+",2") 
+        if(text==directionMsg[0]+",3") 
         {    
             player[2].transform.position+=new Vector3(0.4f,0.6f,0);//プレイヤー2が右上に移動
             UpdateTileColor(player[2],playercolor[2]);
             text="";
         }
 
-        if(text==directionMsg[1]+",2") 
+        if(text==directionMsg[1]+",3") 
         {    
             player[2].transform.position+=new Vector3(0.8f,0,0);//プレイヤー2が右に移動
             UpdateTileColor(player[0],playercolor[2]);
             text="";
         }   
         
-        if(text==directionMsg[2]+",2") 
+        if(text==directionMsg[2]+",3") 
         {    
             player[2].transform.position+=new Vector3(0.4f,-0.6f,0);//プレイヤー2が右下に移動
             UpdateTileColor(player[2],playercolor[2]);
             text="";
         }
         
-        if(text==directionMsg[3]+",2") 
+        if(text==directionMsg[3]+",3") 
         {    
             player[2].transform.position+=new Vector3(-0.4f,-0.6f,0);//プレイヤー2が左下に移動
             UpdateTileColor(player[2],playercolor[2]);
             text="";
         }
 
-        if(text==directionMsg[4]+",2") 
+        if(text==directionMsg[4]+",3") 
         {    
             player[2].transform.position+=new Vector3(-0.8f,0,0);//プレイヤー2が左に移動
             UpdateTileColor(player[2],playercolor[2]);
             text="";
         }
 
-        if(text==directionMsg[5]+",2") 
+        if(text==directionMsg[5]+",3") 
         {    
             player[2].transform.position+=new Vector3(-0.4f,0.6f,0);//プレイヤー2が左上に移動
             UpdateTileColor(player[2],playercolor[2]);
