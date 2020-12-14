@@ -578,10 +578,16 @@ MonoBehaviour:
   score_object2: {fileID: 154217447}
   score_object3: {fileID: 1085445595}
   score_object4: {fileID: 47303474}
-  text: 
-  message: 
+  text: testtest
+  message: testtest
   s1: 
   s2: 
+  u: 0
+  w: 0
+  x: 0
+  y: 0
+  z: 0
+  player: 00000000000000000000000000000000
 --- !u!4 &1473751735
 Transform:
   m_ObjectHideFlags: 0

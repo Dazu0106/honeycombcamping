@@ -24,6 +24,7 @@ public class ActScoreManager : MonoBehaviour
     public int[] player = new int[4];       //プレイヤーの定義
     // Start is called before the first frame update
     void Start(){
+
         var url = "ws://172.16.98.82:8080";
         ws = new WebSocket(url);
         ws.Connect();
@@ -32,6 +33,7 @@ public class ActScoreManager : MonoBehaviour
         player[1]=40;
         player[2]=19;
         player[3]=50;
+        
     }
     
     void ExecuteSort(){
@@ -319,17 +321,18 @@ public class ActScoreManager : MonoBehaviour
             }
             text = "testtest" ;
         }
+        
         if(Input.GetKey(KeyCode.A)){
         ExecuteSort();　　　//関数呼び出し
         }
         
-        if(message.Contains("resultcheck")){
+        if(text.Contains("resultcheck")){
             int playernumber = -1 ;
-            playernumber = int.Parse(message.Substring(11));
+            playernumber = int.Parse(text.Substring(11));
             ws.Send("result" + player[playernumber]) ;
             text = "testtest" ;
         }
-
+        
 
     }
 
