@@ -27,7 +27,7 @@ server.on('connection', ws => {
 //メッセージ受信時に呼ばれる
     ws.on('message' , message =>
     {
-        //console.log(message) ;
+        console.log(message) ;
         //4人の準備完了を待機
         if(message == "ready")
         {
@@ -66,6 +66,9 @@ server.on('connection', ws => {
             var result = "" ;
             result = message.substr(6) //result35
 
+
+            if(resultNum < 4)
+            {
             server.clients.forEach(client =>
                 {
                     client.send(resultNum + result) ;
@@ -74,6 +77,7 @@ server.on('connection', ws => {
             server.clients.forEach(client =>{
                     client.send("resultcheck" + resultNum);
                 });
+            }
         }
 
         //ゲーム開始時の順番決め

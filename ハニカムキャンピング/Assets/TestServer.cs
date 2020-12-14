@@ -24,6 +24,11 @@ public class TestServer : MonoBehaviour {
             ws.Send("clicked No. " + count.ToString());
         }
 
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            ws.Send("GameSet") ;
+        }
+
         if(Input.GetKeyDown(KeyCode.A))
         {
             ws.Send("order") ;
