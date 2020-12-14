@@ -14,26 +14,17 @@ public class ActScoreManager : MonoBehaviour
     public GameObject score_object4=null;
     public string text = "testtest";
     public string message = "testtest";
-    public string s1;
-    public string s2;
-    public int u;
-    public int w;
-    public int x;
-    public int y;
-    public int z;
-    public int[] player = new int[4];       //プレイヤーの定義
+    public int[] player = new int[4];
     public string[] DirectionCheck = new string[6]  ;
-    
-    
     public bool ScoreAdd ;
     // Start is called before the first frame update
     void Start(){
 
-        var url = "ws://172.16.98.82:8080";
-        ws = new WebSocket(url);
-        ws.Connect();
-        ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
-        player[0]=0;       //サーバからの値を格納
+        //var url = "ws://172.16.98.82:8080";
+        //ws = new WebSocket(url);
+        //ws.Connect();
+        //ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
+        player[0]=0;//プレイヤーの初期値を0に設定       
         player[1]=0;
         player[2]=0;
         player[3]=0;
@@ -45,44 +36,14 @@ public class ActScoreManager : MonoBehaviour
         DirectionCheck[4] = "Left" ;
         DirectionCheck[5] = "Lfront" ;
 
-        ScoreAdd = false;
-        
+        ScoreAdd = false;  
     }
-    
-    
-
 
     void ExecuteSort(){
-        
-        /*var myTable = new Dictionary<string, int>();
-        myTable.Add("player[0]", player[0]);
-        myTable.Add("player[1]", player[1]);
-        myTable.Add("player[2]",player[2]);
-        foreach(KeyValuePair<string, int> item in myTable) {
-        Debug.Log(item.Key, item.Value);  
-        }*/
-
-        /*
-        int u=int.Parse(s1);
-        if(u==0){
-            int w=int.Parse(s2);
-            player[0]=w;
-        }else if(u==1){
-            int x=int.Parse(s2);
-            player[1]=x;
-        }else if(u==2){
-            int y=int.Parse(s2);
-            player[2]=y;
-        }else if(u==3){
-            int z=int.Parse(s2);
-            player[3]=z;
-        }
-        */
-        
-        int a=player[0];    //ソートする前に値を保存
-        int b=player[1];
-        int c=player[2];
-        int d=player[3];
+        int e=player[0];    //ソートする前に値を保存
+        int f=player[1];
+        int g=player[2];
+        int h=player[3];
 
         // バブルソートで配列の中身を昇順で並べ替えます。
         for (int i = 0; i < player.Length; i++){
@@ -100,242 +61,207 @@ public class ActScoreManager : MonoBehaviour
                     player[j - 1] = temp;
                 }
             }
-            
         }
-        
-        int e=a;        //ソートする前に保存した値を別の場所にも保存
-        int f=b;
-        int g=c;
-        int h=d; 
 
         Text score_text1 = score_object1.GetComponent<Text> ();
         Text score_text2 = score_object2.GetComponent<Text> ();
         Text score_text3 = score_object3.GetComponent<Text> ();
         Text score_text4 = score_object4.GetComponent<Text> ();
 
-        if(e==player[3]){　　　　//243行目まででソートした値とプレイヤー名を一致させる
+        if(e==player[3]){　　　　//256行目まででソートした値とプレイヤー名を一致させる
             player[3]=e;
-            score_text1.text = "player0 "+player[3];
+            score_text1.text = "Player0 "+player[3];
             if(f==player[2]){
                 player[2]=f;
-                score_text2.text = "player1 "+player[2];
+                score_text2.text = "Player1 "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=h;
-                    score_text3.text = "player2 "+player[1];
-                    score_text4.text = "player3 "+player[0];
-
+                    score_text3.text = "Player2 "+player[1];
+                    score_text4.text = "Player3 "+player[0];
                 }else if(h==player[1]){
                     player[1]=h;
                     player[0]=g;
-                    score_text3.text = "player3 "+player[1];
-                    score_text4.text = "player2 "+player[0];
+                    score_text3.text = "Player3 "+player[1];
+                    score_text4.text = "Player2 "+player[0];
                 }
             }else if(g==player[2]){
                 player[2]=g;
-                score_text2.text = "player2 "+player[2];
+                score_text2.text = "Player2 "+player[2];
                 if(h==player[1]){
                     player[1]=h;
                     player[0]=f;
-                    score_text3.text = "player3 "+player[1];
-                    score_text4.text = "player1 "+player[0];
+                    score_text3.text = "Player3 "+player[1];
+                    score_text4.text = "Player1 "+player[0];
                 }else if(f==player[1]){
                     player[0]=h;
                     player[1]=f;
                     score_text3.text = "player1 "+player[1];
-                    score_text4.text = "player3 "+player[0];
+                    score_text4.text = "Player3 "+player[0];
                 }
             }else if(h==player[2]){
                 player[2]=h;
-                score_text2.text = "player3 "+player[2];
+                score_text2.text = "Player3 "+player[2];
                 if(f==player[1]){
                     player[1]=f;
                     player[0]=g;
-                    score_text3.text = "player1 "+player[1];
-                    score_text4.text = "player2 "+player[0];
+                    score_text3.text = "Player1 "+player[1];
+                    score_text4.text = "Player2 "+player[0];
                 }else if(g==player[1]){
                     player[1]=g;
                     player[0]=f;
-                    score_text3.text = "player2 "+player[1];
-                    score_text4.text = "player1 "+player[0];
+                    score_text3.text = "Player2 "+player[1];
+                    score_text4.text = "Player1 "+player[0];
                 }
             }
         }else if(f==player[3]){
             player[3]=f;
-            score_text1.text = "player1 "+player[3];
+            score_text1.text = "Player1 "+player[3];
             if(g==player[2]){
                 player[2]=g;
-                score_text2.text = "player2 "+player[2];
+                score_text2.text = "Player2 "+player[2];
                 if(h==player[1]){
                     player[1]=h;
                     player[0]=e;
-                    score_text3.text = "player3 "+player[1];
-                    score_text4.text = "player0 "+player[0];
+                    score_text3.text = "Player3 "+player[1];
+                    score_text4.text = "Player0 "+player[0];
                 }else if(e==player[1]){
                     player[1]=e;
                     player[0]=h;
-                    score_text3.text = "player0 "+player[1];
-                    score_text4.text = "player3 "+player[0];
+                    score_text3.text = "Player0 "+player[1];
+                    score_text4.text = "Player3 "+player[0];
                 }
             }else if(h==player[2]){
                 player[2]=h;
-                score_text2.text = "player3 "+player[2];
+                score_text2.text = "Player3 "+player[2];
                 if(e==player[1]){
                     player[1]=e;
                     player[0]=g;
-                    score_text3.text = "player0 "+player[1];
-                    score_text4.text = "player2 "+player[0];
+                    score_text3.text = "Player0 "+player[1];
+                    score_text4.text = "Player2 "+player[0];
                 }else if(g==player[1]){
                     player[0]=e;
                     player[1]=g;
-                    score_text3.text = "player2 "+player[1];
-                    score_text4.text = "player0 "+player[0];
+                    score_text3.text = "Player2 "+player[1];
+                    score_text4.text = "Player0 "+player[0];
                 }
             }else if(e==player[2]){
                 player[2]=e;
-                score_text2.text = "player0 "+player[2];
+                score_text2.text = "Player0 "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=h;
-                    score_text3.text = "player2 "+player[1];
-                    score_text4.text = "player3 "+player[0];
+                    score_text3.text = "Player2 "+player[1];
+                    score_text4.text = "Player3 "+player[0];
                 }else if(h==player[1]){
                     player[1]=h;
                     player[0]=g;
-                    score_text3.text = "player3 "+player[1];
-                    score_text4.text = "player2 "+player[0];
+                    score_text3.text = "Player3 "+player[1];
+                    score_text4.text = "Player2 "+player[0];
                 }
             }
         }else if(g==player[3]){
             player[3]=g;
-            score_text1.text = "player2 "+player[3];
+            score_text1.text = "Player2 "+player[3];
             if(f==player[2]){
                 player[2]=f;
-                score_text2.text = "player1 "+player[2];
+                score_text2.text = "Player1 "+player[2];
                 if(e==player[1]){
                     player[1]=e;
                     player[0]=h;
-                    score_text3.text = "player0 "+player[1];
-                    score_text4.text = "player3 "+player[0];
+                    score_text3.text = "Player0 "+player[1];
+                    score_text4.text = "Player3 "+player[0];
                 }else if(h==player[1]){
                     player[0]=e;
                     player[1]=h;
-                    score_text3.text = "player3 "+player[1];
-                    score_text4.text = "player0 "+player[0];
+                    score_text3.text = "Player3 "+player[1];
+                    score_text4.text = "Player0 "+player[0];
                 }
             }else if(e==player[2]){
                 player[2]=e;
-                score_text2.text = "player0 "+player[2];
+                score_text2.text = "Player0 "+player[2];
                 if(h==player[1]){
                     player[1]=h;
                     player[0]=f;
-                    score_text3.text = "player3 "+player[1];
-                    score_text4.text = "player1 "+player[0];
+                    score_text3.text = "Player3 "+player[1];
+                    score_text4.text = "Player1 "+player[0];
                 }else if(f==player[1]){
                     player[0]=h;
                     player[1]=f;
-                    score_text3.text = "player1 "+player[1];
-                    score_text4.text = "player3 "+player[0];
+                    score_text3.text = "Player1 "+player[1];
+                    score_text4.text = "Player3 "+player[0];
                 }
             }else if(h==player[2]){
                 player[2]=h;
-                score_text2.text = "player3 "+player[2];
+                score_text2.text = "Player3 "+player[2];
                 if(f==player[1]){
                     player[1]=f;
                     player[0]=e;
-                    score_text3.text = "player1 "+player[1];
-                    score_text4.text = "player0 "+player[0];
+                    score_text3.text = "Player1 "+player[1];
+                    score_text4.text = "Player0 "+player[0];
                 }else if(e==player[1]){
                     player[1]=e;
                     player[0]=f;
-                    score_text3.text = "player0 "+player[1];
-                    score_text4.text = "player1 "+player[0];
+                    score_text3.text = "Player0 "+player[1];
+                    score_text4.text = "Player1 "+player[0];
                 }
             }
         }else if(h==player[3]){
             player[3]=h;
-            score_text1.text = "player3 "+player[3];
+            score_text1.text = "Player3 "+player[3];
             if(e==player[2]){
                 player[2]=e;
-                score_text2.text = "player0 "+player[2];
+                score_text2.text = "Player0 "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=f;
-                    score_text3.text = "player2 "+player[1];
-                    score_text4.text = "player1 "+player[0];
+                    score_text3.text = "Player2 "+player[1];
+                    score_text4.text = "Player1 "+player[0];
                 }else if(f==player[1]){
                     player[0]=g;
                     player[1]=f;
-                    score_text3.text = "player1 "+player[1];
-                    score_text4.text = "player2 "+player[0];
+                    score_text3.text = "Player1 "+player[1];
+                    score_text4.text = "Player2 "+player[0];
                 }
             }else if(f==player[2]){
                 player[2]=f;
-                score_text2.text = "player1 "+player[2];
+                score_text2.text = "Player1 "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=e;
-                    score_text3.text = "player2 "+player[1];
-                    score_text4.text = "player0 "+player[0];
+                    score_text3.text = "Player2 "+player[1];
+                    score_text4.text = "Player0 "+player[0];
                 }else if(e==player[1]){
                     player[0]=g;
                     player[1]=e;
-                    score_text3.text = "player0 "+player[1];
-                    score_text4.text = "player2 "+player[0];
+                    score_text3.text = "Player0 "+player[1];
+                    score_text4.text = "Player2 "+player[0];
                 }
             }else if(g==player[2]){
                 player[2]=g;
-                score_text2.text = "player2 "+player[2];
+                score_text2.text = "Player2 "+player[2];
                 if(f==player[1]){
                     player[1]=f;
                     player[0]=e;
-                    score_text3.text = "player1 "+player[1];
-                    score_text4.text = "player0 "+player[0];
+                    score_text3.text = "Player1 "+player[1];
+                    score_text4.text = "Player0 "+player[0];
                 }else if(e==player[1]){
                     player[1]=e;
                     player[0]=f;
-                    score_text3.text = "player0 "+player[1];
-                    score_text4.text = "player1 "+player[0];
+                    score_text3.text = "Player0 "+player[1];
+                    score_text4.text = "Player1 "+player[0];
                 }
             }
         }
-        
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if((text.Substring(0,1) == "0")||(text.Substring(0,1) == "1")||(text.Substring(0,1) == "2")||(text.Substring(0,1) == "3"))
-        {
-            string s= text;
-            string s1= "";
-            s1 = s.Substring(0,1);
-            string s2="" ;
-            s2 = s.Substring(1,2);
-            int u=int.Parse(s1);
-            
-            if(u==0){
-                int w=int.Parse(s2);
-                player[0]=w;
-            }else if(u==1){
-                int x=int.Parse(s2);
-                player[1]=x;
-            }else if(u==2){
-                int y=int.Parse(s2);
-                player[2]=y;
-            }else if(u==3){
-                int z=int.Parse(s2);
-                player[3]=z;
-            }
-            text = "testtest" ;
-        }*/
-        
-        /*if(Input.GetKeyUp(KeyCode.A)){
+        if(Input.GetKeyUp(KeyCode.A)){
         ExecuteSort();　　　//関数呼び出し
-        }*/
-        
-        if(text.Contains("resultcheck")){
+        }
+        /*if(text.Contains("resultcheck")){
             int playernumber = -1 ;
             playernumber = int.Parse(text.Substring(11));
             ws.Send("result" + player[playernumber]) ;
@@ -345,13 +271,10 @@ public class ActScoreManager : MonoBehaviour
         if(text=="GameSet"){
             ExecuteSort();
             text="testtest";
-        }
-        
-
+        }*/
     }
 
-    
-    public void ReceivTest(string message)
+    /*public void ReceivTest(string message)
     {   
         int playernumber = -1 ;
         text=message;
@@ -384,5 +307,5 @@ public class ActScoreManager : MonoBehaviour
 
             ScoreAdd = false ;
         }
-    }
+    }*/
 }
