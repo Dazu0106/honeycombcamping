@@ -22,6 +22,10 @@ public class ActScoreManager : MonoBehaviour
     public int y;
     public int z;
     public int[] player = new int[4];       //プレイヤーの定義
+    public string[] DirectionCheck = new string[6]  ;
+    
+    
+    public bool ScoreAdd ;
     // Start is called before the first frame update
     void Start(){
 
@@ -29,22 +33,35 @@ public class ActScoreManager : MonoBehaviour
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
-        player[0]=26;       //サーバからの値を格納
-        player[1]=40;
-        player[2]=19;
-        player[3]=50;
+        player[0]=0;       //サーバからの値を格納
+        player[1]=0;
+        player[2]=0;
+        player[3]=0;
+
+        DirectionCheck[0] = "Rfront" ;
+        DirectionCheck[1] = "Right" ;
+        DirectionCheck[2] = "Rback" ;
+        DirectionCheck[3] = "Lback" ;
+        DirectionCheck[4] = "Left" ;
+        DirectionCheck[5] = "Lfront" ;
+
+        ScoreAdd = false;
         
     }
     
+    
+
+
     void ExecuteSort(){
-        /*int[] player;       //プレイヤーの定義
-        player=new int[4];
-        player[0]=26;       //サーバからの値を格納
-        player[1]=40;
-        player[2]=19;
-        player[3]=50;*/
         
-        
+        /*var myTable = new Dictionary<string, int>();
+        myTable.Add("player[0]", player[0]);
+        myTable.Add("player[1]", player[1]);
+        myTable.Add("player[2]",player[2]);
+        foreach(KeyValuePair<string, int> item in myTable) {
+        Debug.Log(item.Key, item.Value);  
+        }*/
+
         /*
         int u=int.Parse(s1);
         if(u==0){
@@ -61,21 +78,12 @@ public class ActScoreManager : MonoBehaviour
             player[3]=z;
         }
         */
-
-
-
-
-
-        /*player[0]=26;       //サーバからの値を格納
-        player[1]=40;
-        player[2]=19;
-        player[3]=50;*/
-
+        
         int a=player[0];    //ソートする前に値を保存
         int b=player[1];
         int c=player[2];
         int d=player[3];
-       
+
         // バブルソートで配列の中身を昇順で並べ替えます。
         for (int i = 0; i < player.Length; i++){
 
@@ -116,7 +124,7 @@ public class ActScoreManager : MonoBehaviour
                     player[0]=h;
                     score_text3.text = "player2 "+player[1];
                     score_text4.text = "player3 "+player[0];
-                    
+
                 }else if(h==player[1]){
                     player[1]=h;
                     player[0]=g;
@@ -291,13 +299,14 @@ public class ActScoreManager : MonoBehaviour
                 }
             }
         }
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if((text.Substring(0,1) == "0")||(text.Substring(0,1) == "1")||(text.Substring(0,1) == "2")||(text.Substring(0,1) == "3"))
+        /*if((text.Substring(0,1) == "0")||(text.Substring(0,1) == "1")||(text.Substring(0,1) == "2")||(text.Substring(0,1) == "3"))
         {
             string s= text;
             string s1= "";
@@ -320,11 +329,11 @@ public class ActScoreManager : MonoBehaviour
                 player[3]=z;
             }
             text = "testtest" ;
-        }
+        }*/
         
-        if(Input.GetKey(KeyCode.A)){
+        /*if(Input.GetKeyUp(KeyCode.A)){
         ExecuteSort();　　　//関数呼び出し
-        }
+        }*/
         
         if(text.Contains("resultcheck")){
             int playernumber = -1 ;
@@ -332,12 +341,48 @@ public class ActScoreManager : MonoBehaviour
             ws.Send("result" + player[playernumber]) ;
             text = "testtest" ;
         }
+
+        if(text=="GameSet"){
+            ExecuteSort();
+            text="testtest";
+        }
         
 
     }
 
+    
     public void ReceivTest(string message)
     {   
+        int playernumber = -1 ;
         text=message;
+        for(int i = 0 ; i < 6 ; i++)
+        {
+            if(text.Contains(DirectionCheck[i]))
+            {
+                ScoreAdd = true ;
+            }
+        }
+
+        if(ScoreAdd == true)
+        {
+            if(text.Contains("0"))
+            {
+                player[0] += 1 ;
+            }
+            else if(text.Contains("1"))
+            {
+                player[1] += 1 ;
+            }
+            else if(text.Contains("2"))
+            {
+                player[2] += 1 ;
+            }
+            else if(text.Contains("3"))
+            {
+                player[3] += 1 ;
+            }
+
+            ScoreAdd = false ;
+        }
     }
 }
