@@ -41,5 +41,6 @@ public class StartButton : MonoBehaviour
     public void TitleReceive(string message)
     {
         text = message ;
+        // Debug.Log(message);
     }
 }
