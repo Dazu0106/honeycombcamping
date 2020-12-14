@@ -33,7 +33,7 @@ public class StartButton : MonoBehaviour
 
     public void OnclickStartButton()
     {
-        for(int i = 0 ; i < 4 ; i++)
+        //for(int i = 0 ; i < 4 ; i++)
         ws.Send("ready") ;
         Button.SetActive(false) ;
     }
