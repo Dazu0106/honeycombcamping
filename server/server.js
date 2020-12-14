@@ -53,8 +53,17 @@ server.on('connection', ws => {
 
         //ゲームセットを送り返してもらってゲーム終了のメッセージ
         //プレイヤー0のリザルトチェック
+
         if(message == "GameSet")
         {
+            server.clients.forEach(client =>
+                {
+                    client.send("GameSet") ;
+                });
+        }
+        /*
+        {
+        
             server.clients.forEach(client =>
                 {
                     client.send("resultcheck" + resultNum ) ;
@@ -79,6 +88,7 @@ server.on('connection', ws => {
                 });
             }
         }
+        */
 
         //ゲーム開始時の順番決め
         if(message == "order")
