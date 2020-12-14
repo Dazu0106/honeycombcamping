@@ -14,6 +14,7 @@ var order = [-1,-2,-3,-4] ;
 var rdy = [0,0,0,0] ;
 var wildCard = false;
 var CanMove = [1 , 1 , 1 , 1] ;
+var rdygo = 0;
 
 // 接続時に呼ばれる
 server.on('connection', ws => {
@@ -31,13 +32,12 @@ server.on('connection', ws => {
         //4人の準備完了を待機
         if(message == "ready")
         {
-            var rdygo = 0;
             rdy[rdygo] = 1 ;
 
 
             if(rdy[3]==1)
             {
-                server.clients.forEach(server =>
+                server.clients.forEach(client =>
                     {
                         client.send("readygo") ;
                         //readygoをもらった一人のプレイヤーがorderを投げる
@@ -46,6 +46,7 @@ server.on('connection', ws => {
 
                     });
                 rdy = [0,0,0,0] ;
+                rdygo = 0 ;
             }
             else
             rdygo++ ;
