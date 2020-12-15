@@ -35,6 +35,8 @@ public class Timer : MonoBehaviour
         //時間を表示する
         if(TurnFlag)
         timeText.text = countdown.ToString("f1") + "秒";
+        else
+        timeText.text = "." ;
 
         //countdownが0以下になったとき
         if (countdown <= 0 && (TurnFlag))
