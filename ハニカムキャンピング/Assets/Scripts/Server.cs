@@ -43,12 +43,12 @@ public class Server : MonoBehaviour {
     void Update () {
         if(texts.Count>0){
             string text=texts.Dequeue();
-            Debug.Log("On message:"+text);
+            //Debug.Log("On message:"+text);
             if((dummyPlayer[0]==player[0]) || (dummyPlayer[1]==player[0]) || (dummyPlayer[2]==player[0]))//dummyplayerがplayer0であるをチェック
             {
-                Debug.Log("0:"+text);
+                //Debug.Log("0:"+text);
             
-                if(text==(/*directionMsg[0]+*/"Rfront,0")) 
+                if(text==(directionMsg[0]+",0")) 
                 {    
                     player[0].transform.position+=new Vector3(0.4f,0.6f,0);//プレイヤー0が右上に移動
                     UpdateTileColor(player[0],player[0].GetComponent<MovementController>().tileColor);
@@ -95,7 +95,7 @@ public class Server : MonoBehaviour {
 
             if((dummyPlayer[0]==player[1]) || (dummyPlayer[1]==player[1]) || (dummyPlayer[2]==player[1]))
             {
-                Debug.Log("1:"+text);
+                //Debug.Log("1:"+text);
                 if(text==(directionMsg[0]+",1")) 
                 {    
                     player[1].transform.position+=new Vector3(0.4f,0.6f,0);//プレイヤー1が右上に移動
@@ -142,7 +142,7 @@ public class Server : MonoBehaviour {
 
             if((dummyPlayer[0]==player[2]) || (dummyPlayer[1]==player[2]) || (dummyPlayer[2]==player[2]))
             {
-                Debug.Log("2:"+text);
+                //Debug.Log("2:"+text);
                 if(text==(directionMsg[0]+",2")) 
                 {    
                     player[2].transform.position+=new Vector3(0.4f,0.6f,0);//プレイヤー2が右上に移動
@@ -189,7 +189,7 @@ public class Server : MonoBehaviour {
 
             if((dummyPlayer[0]==player[3]) || (dummyPlayer[1]==player[3]) || (dummyPlayer[2]==player[3]))
             {
-                Debug.Log("3:"+text);
+                //Debug.Log("3:"+text);
                 if(text==(directionMsg[0]+",3")) 
                 {    
                     player[2].transform.position+=new Vector3(0.4f,0.6f,0);//プレイヤー3が右上に移動
@@ -239,7 +239,7 @@ public class Server : MonoBehaviour {
     {   
         //text=message;
         texts.Enqueue(message);
-        //Debug.Log("ReceivTest"+text);        
+        Debug.Log("ReceivTest"+message);        
     }
 
     public void UpdateTileColor(GameObject player,Color playercolor)

@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 239192543}
   - component: {fileID: 239192542}
   m_Layer: 0
-  m_Name: "\u30CF\u30CB\u30AD\u30E3\u30F3\u30BF\u30A4\u30C8\u30EB"
+  m_Name: honeycombTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +315,6 @@ GameObject:
   m_Component:
   - component: {fileID: 564570407}
   - component: {fileID: 564570406}
-  - component: {fileID: 564570405}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -323,14 +322,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &564570405
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564570404}
-  m_Enabled: 1
 --- !u!20 &564570406
 Camera:
   m_ObjectHideFlags: 0
