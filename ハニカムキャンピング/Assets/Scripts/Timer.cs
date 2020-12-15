@@ -7,12 +7,12 @@ using WebSocketSharp ;
 
 public class Timer : MonoBehaviour
 {
-    public bool TurnFlag = true ;
+    public bool TurnFlag = false ;
     public WebSocket ws ;
     public string text="" ;
     public int playerNum =  0;
     //カウントダウン
-    public float countdown = 10.0f;
+    public float countdown = 0.0f;
 
     //時間を表示するText型の変数
     public Text timeText ;
@@ -33,16 +33,23 @@ public class Timer : MonoBehaviour
         countdown -= Time.deltaTime;
 
         //時間を表示する
+        if(TurnFlag)
         timeText.text = countdown.ToString("f1") + "秒";
 
         //countdownが0以下になったとき
         if (countdown <= 0 && (TurnFlag))
         {
 
-            timeText.text = "時間になりました！";
+            //timeText.text = "時間になりました！";
             ws.Send("TurnEnd,timeover") ;
             TurnFlag = false ;
         }
+    }
+
+    public void TextWrite(string message)
+    {
+        text = message ;
+       // Debug.Log(text) ;
 
         if(text == ("Start," + playerNum))
         {
@@ -50,12 +57,6 @@ public class Timer : MonoBehaviour
             countdown = 10.0f ;
             text = "" ;
         }
-    }
-
-    public void TextWrite(string message)
-    {
-        text = message ;
-        Debug.Log(text) ;
     }
 }
 
