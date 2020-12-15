@@ -9,7 +9,6 @@ public class ActOrderUI : MonoBehaviour
      public WebSocket ws;
      private Vector3 pos0, pos1, pos2, pos3;
      //public GameObject p0, p1, p2, p3;
-     string checktext = "1234567890";
      //public GameObject[] arr = new GameObject[] {p0, p1, p2, p3};
      
      public GameObject p0 = null ;
@@ -42,7 +41,6 @@ public class ActOrderUI : MonoBehaviour
     void Update()
     {   if(texts.Count>0){ 
         string text = texts.Dequeue();
-        //checktext = text.Substring(0,5);
             if(text.Contains("order")){
                 Debug.Log(text+"Check") ;
                 arr[int.Parse(text.Substring(5,1))].transform.position = pos0;

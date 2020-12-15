@@ -273,7 +273,7 @@ public class ActScoreManager : MonoBehaviour
 
     public void ReceivTest(string message)
     {   
-        int playernumber = -1 ;
+        //int playernumber = -1 ;
         text=message;
         for(int i = 0 ; i < 6 ; i++)
         {
