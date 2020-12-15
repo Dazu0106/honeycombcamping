@@ -20,10 +20,10 @@ public class ActScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
 
-        //var url = "ws://172.16.98.82:8080";
-        //ws = new WebSocket(url);
-        //ws.Connect();
-        //ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
+        var url = "ws://172.16.98.82:8080";
+        ws = new WebSocket(url);
+        ws.Connect();
+        ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
         player[0]=0;//プレイヤーの初期値を0に設定       
         player[1]=0;
         player[2]=0;
@@ -258,10 +258,7 @@ public class ActScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.A)){
-        ExecuteSort();　　　//関数呼び出し
-        }
-        /*if(text.Contains("resultcheck")){
+        if(text.Contains("resultcheck")){
             int playernumber = -1 ;
             playernumber = int.Parse(text.Substring(11));
             ws.Send("result" + player[playernumber]) ;
@@ -271,10 +268,10 @@ public class ActScoreManager : MonoBehaviour
         if(text=="GameSet"){
             ExecuteSort();
             text="testtest";
-        }*/
+        }
     }
 
-    /*public void ReceivTest(string message)
+    public void ReceivTest(string message)
     {   
         int playernumber = -1 ;
         text=message;
@@ -307,5 +304,5 @@ public class ActScoreManager : MonoBehaviour
 
             ScoreAdd = false ;
         }
-    }*/
+    }
 }
