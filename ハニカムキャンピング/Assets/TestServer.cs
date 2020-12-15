@@ -78,5 +78,8 @@ public class TestServer : MonoBehaviour {
     public void ReceivTest(string text)
     {
         Debug.Log(text) ;
+
+        if(text == "readygo" || text == "turnAround")
+            ws.Send("order") ;
     }
 }
