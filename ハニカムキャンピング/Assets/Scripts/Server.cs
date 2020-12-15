@@ -192,42 +192,42 @@ public class Server : MonoBehaviour {
                 //Debug.Log("3:"+text);
                 if(text==(directionMsg[0]+",3")) 
                 {    
-                    player[2].transform.position+=new Vector3(0.4f,0.6f,0);//プレイヤー3が右上に移動
+                    player[3].transform.position+=new Vector3(0.4f,0.6f,0);//プレイヤー3が右上に移動
                     UpdateTileColor(player[3],player[3].GetComponent<MovementController>().tileColor);
                     
                 }
 
                 if(text==(directionMsg[1]+",3")) 
                 {    
-                    player[2].transform.position+=new Vector3(0.8f,0,0);//プレイヤー3が右に移動
+                    player[3].transform.position+=new Vector3(0.8f,0,0);//プレイヤー3が右に移動
                     UpdateTileColor(player[3],player[3].GetComponent<MovementController>().tileColor);
                     
                 }   
                 
                 if(text==(directionMsg[2]+",3")) 
                 {    
-                    player[2].transform.position+=new Vector3(0.4f,-0.6f,0);//プレイヤー3が右下に移動
+                    player[3].transform.position+=new Vector3(0.4f,-0.6f,0);//プレイヤー3が右下に移動
                     UpdateTileColor(player[3],player[3].GetComponent<MovementController>().tileColor);
                     
                 }
                 
                 if(text==(directionMsg[3]+",3")) 
                 {    
-                    player[2].transform.position+=new Vector3(-0.4f,-0.6f,0);//プレイヤー3が左下に移動
+                    player[3].transform.position+=new Vector3(-0.4f,-0.6f,0);//プレイヤー3が左下に移動
                     UpdateTileColor(player[3],player[3].GetComponent<MovementController>().tileColor);
                     
                 }
 
                 if(text==(directionMsg[4]+",3")) 
                 {    
-                    player[2].transform.position+=new Vector3(-0.8f,0,0);//プレイヤー3が左に移動
+                    player[3].transform.position+=new Vector3(-0.8f,0,0);//プレイヤー3が左に移動
                     UpdateTileColor(player[3],player[3].GetComponent<MovementController>().tileColor);
                     
                 }
 
                 if(text==(directionMsg[5]+",3")) 
                 {    
-                    player[2].transform.position+=new Vector3(-0.4f,0.6f,0);//プレイヤー3が左上に移動
+                    player[3].transform.position+=new Vector3(-0.4f,0.6f,0);//プレイヤー3が左上に移動
                     UpdateTileColor(player[3],player[3].GetComponent<MovementController>().tileColor);
                     
                 }
