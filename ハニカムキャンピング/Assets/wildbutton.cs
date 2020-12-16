@@ -5,7 +5,7 @@ using WebSocketSharp;
 
 public class wildbutton : MonoBehaviour
 {   
-    private GameObject Bullet;
+    public GameObject Bullet;
     public GameObject wildButton;
     public WebSocket ws;
     private bool TurnFlag=false;
@@ -15,12 +15,13 @@ public class wildbutton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         var url = "ws://172.16.98.82:8080";
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
-        playerNum=Bullet.GetComponent<ActControllerManager>().player.name;
-        playerNum=playerNum.Substring(6,1);
+        //playerNum=Bullet.GetComponent<ActControllerManager>().player.name;
+        playerNum=Bullet.name.Substring(6,1);
     }
 
     // Update is called once per frame
