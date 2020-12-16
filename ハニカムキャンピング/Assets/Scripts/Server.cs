@@ -239,7 +239,7 @@ public class Server : MonoBehaviour {
     {   
         //text=message;
         texts.Enqueue(message);
-        Debug.Log("ReceivTest"+message);        
+        //Debug.Log("ReceivTest"+message);        
     }
 
     public void UpdateTileColor(GameObject player,Color playercolor)
