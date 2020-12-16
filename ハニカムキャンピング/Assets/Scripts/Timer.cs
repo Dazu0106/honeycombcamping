@@ -7,12 +7,12 @@ using WebSocketSharp ;
 
 public class Timer : MonoBehaviour
 {
-    public bool TurnFlag = false ;
+    private bool TurnFlag = false ;
     public WebSocket ws ;
     public string text="" ;
-    public int playerNum =  0;
+    private int playerNum =  0;
     //カウントダウン
-    public float countdown = 0.0f;
+    private float countdown = 0.0f;
 
     //時間を表示するText型の変数
     public Text timeText ;
@@ -24,6 +24,8 @@ public class Timer : MonoBehaviour
         ws = new WebSocket(url) ;
         ws.Connect() ;
         ws.OnMessage += (sender , e) => TextWrite(e.Data) ;
+
+        
     }
 
     // Update is called once per frame
@@ -57,6 +59,11 @@ public class Timer : MonoBehaviour
         {
             TurnFlag = true ;
             countdown = 10.0f ;
+            text = "" ;
+        }
+        else
+        {
+            TurnFlag = false ;
             text = "" ;
         }
     }
