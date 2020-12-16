@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WebSocketSharp ;
+using System.Threading ;
 
 public class TestServer : MonoBehaviour {
     private int count = 0; // click counter
@@ -41,7 +42,7 @@ public class TestServer : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.I))
         {
-            ws.Send("TurnEndRfront") ;
+            ws.Send("TurnEndRfront,Stop") ;
         }
 
         if(Input.GetKeyDown(KeyCode.K))
@@ -73,6 +74,13 @@ public class TestServer : MonoBehaviour {
         {
             ws.Send("ready") ;
         }
+
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            ws.Send("cantMove") ;
+        }
+
     }
 
     public void ReceivTest(string text)
@@ -80,6 +88,12 @@ public class TestServer : MonoBehaviour {
         Debug.Log(text) ;
 
         if(text == "readygo" || text == "turnAround")
+        {
+            Thread.Sleep(1000);
             ws.Send("order") ;
+            text = "" ;
+        }
     }
+
+    
 }

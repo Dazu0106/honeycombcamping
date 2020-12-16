@@ -16,6 +16,7 @@ var wildCard = false;
 var CanMove = [1 , 1 , 1 , 1] ;
 var rdygo = 0;
 
+
 // 接続時に呼ばれる
 server.on('connection', ws => {
     /*
@@ -45,8 +46,8 @@ server.on('connection', ws => {
 
 
                     });
-                rdy = [0,0,0,0] ;
-                rdygo = 0 ;
+                //rdy = [0,0,0,0] ;
+                //rdygo = 0 ;
             }
             else
             rdygo++ ;
@@ -120,7 +121,7 @@ server.on('connection', ws => {
                     while(CanMove[order[turnNumber]] == -1)
                     {
                         turnNumber++ ;
-                        if(turnNumber > 4) 
+                        if(turnNumber == 4) 
                         {
                             GameJudge = true ;
                             server.clients.forEach(client =>{
