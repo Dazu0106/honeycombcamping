@@ -191,7 +191,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1038496504}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4733,9 +4733,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05cc6f75188cca946869d989afa8d832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bullet: {fileID: 0}
+  wildButton: {fileID: 0}
   message: 
   text: 
-  i: 0
 --- !u!114 &933123039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5330,9 +5331,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tilemap: {fileID: 733144189}
   dummyPlayer:
-  - {fileID: 1831242762}
   - {fileID: 816386634}
   - {fileID: 1834063426}
+  - {fileID: 155262939}
 --- !u!4 &1261990701
 Transform:
   m_ObjectHideFlags: 0
@@ -5478,9 +5479,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05cc6f75188cca946869d989afa8d832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bullet: {fileID: 1831242762}
+  wildButton: {fileID: 1436295556}
   message: 
   text: 
-  i: 0
 --- !u!114 &1436295559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5766,7 +5768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae322494ac5ef34db468257a97d84ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 155262939}
+  player: {fileID: 1831242762}
   up_R: {fileID: 1057438199}
   mid_R: {fileID: 1852550612}
   down_R: {fileID: 1892391633}
