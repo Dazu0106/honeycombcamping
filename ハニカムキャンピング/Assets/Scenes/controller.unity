@@ -596,6 +596,15 @@ MonoBehaviour:
   down_L: {fileID: 2040739661}
   direction: {x: 0, y: 0, z: 0}
   objectName: Bullet
+<<<<<<< Updated upstream
+=======
+  up_R: {fileID: 919648069}
+  mid_R: {fileID: 917661142}
+  down_R: {fileID: 335234991}
+  up_L: {fileID: 1803110508}
+  mid_L: {fileID: 1256312767}
+  down_L: {fileID: 2040739661}
+>>>>>>> Stashed changes
 --- !u!1 &1256312767
 GameObject:
   m_ObjectHideFlags: 0

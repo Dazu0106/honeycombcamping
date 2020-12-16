@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 
 public class ActControllerManager : MonoBehaviour
 {
+<<<<<<< Updated upstream
     
     
     GameObject clickedButton;
@@ -17,6 +18,16 @@ public class ActControllerManager : MonoBehaviour
     
     private WebSocket ws;
     private Vector3 direction;
+=======
+    
+    GameObject clickedButton;
+    GameObject player;
+
+    public Vector3 direction;
+    public string objectName;
+    public GameObject up_R, mid_R, down_R;
+    public GameObject up_L, mid_L, down_L;
+>>>>>>> Stashed changes
     private Tilemap hexTile;
     
     private bool[] settable = new bool[6];//右上、左上、右、左、右下、左下の順で6つ
@@ -29,11 +40,15 @@ public class ActControllerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
+<<<<<<< Updated upstream
 
         var url = "ws://localhost:8080";//"ws://172.16.98.82:8080";
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
+=======
+        player = GameObject.Find(objectName);
+>>>>>>> Stashed changes
         hexTile = player.GetComponent<MovementController>().Tilemap;
         playerNum = player.name.Substring(6,1);//Bulletの識別番号を取得
         //Debug.Log(playerNum);
