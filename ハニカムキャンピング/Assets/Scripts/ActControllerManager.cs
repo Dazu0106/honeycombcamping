@@ -43,6 +43,7 @@ public class ActControllerManager : MonoBehaviour
         {
             string text=texts.Dequeue();
             string resultTx="";
+            Debug.Log("text="+text);
             if(text=="Start,"+playerNum)
             {   
                 CheckAroundTile();
@@ -160,14 +161,14 @@ public class ActControllerManager : MonoBehaviour
                     {
                         ws.Send(resultTx+"Stop");
                     }
-                    movable=false;
+                    
                     }
 
                 }
                 else
-                    {
-                        ws.Send("cantMove");
-                    }
+                {
+                    ws.Send("cantMove");
+                }
                 
 
                 
@@ -229,7 +230,7 @@ public class ActControllerManager : MonoBehaviour
     {   
         //text=message;
         texts.Enqueue(message);
-        //Debug.Log(text);        
+        Debug.Log("OnMessage:"+message);        
     }
 
 
