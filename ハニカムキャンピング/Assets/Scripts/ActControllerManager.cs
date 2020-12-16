@@ -16,7 +16,9 @@ public class ActControllerManager : MonoBehaviour
     private WebSocket ws;
     private Vector3 direction;
     private Tilemap hexTile;
-    private Queue<string> texts = new Queue<string>();
+    string resultTx="";
+    private string text="";
+    private int count=0;
     private bool[] settable = new bool[6];//右上、左上、右、左、右下、左下の順で6つ
     private bool movable;//移動可能か
     private string playerNum;//プレイヤーの識別番号
@@ -39,140 +41,133 @@ public class ActControllerManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   if(texts.Count>0)
-        {
-            string text=texts.Dequeue();
-            string resultTx="";
-            Debug.Log("text="+text);
-            if(text=="Start,"+playerNum)
-            {   
-                CheckAroundTile();
-                if(movable)
-                {
-                    if(Input.GetMouseButtonDown(0)){
-                        clickedButton = null;
+    {   if(text=="Start,"+playerNum)
+        {   
+            CheckAroundTile();
+            if(movable)
+            {
+                if(Input.GetMouseButtonDown(0)){
+                    clickedButton = null;
 
-                        // ClickedSprites check
-                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                        RaycastHit2D hit2d = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
-            
-                        if (hit2d) {
-                            clickedButton = hit2d.transform.gameObject;
-                        } 
+                    // ClickedSprites check
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit2D hit2d = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
+        
+                    if (hit2d) {
+                        clickedButton = hit2d.transform.gameObject;
+                    } 
 
-                        // 右上
-                        if(clickedButton == up_R){
-                            CheckAroundTile();
-                            if(settable[0]){
-                            
-                                //Debug.Log("Moved right up");
-                                //Debug.Log("settable[0]"+settable[0]);
-                                direction = new Vector3(0.4f,0.6f);
-                                player.GetComponent<MovementController>().transform.position += direction;
-                                player.GetComponent<MovementController>().UpdatePosition();
-                                resultTx="TurnEnd,"+"Rfront";
-                            }
-                            CheckAroundTile();
-                            
-                        }
+                    // 右上
+                    if(clickedButton == up_R){
+                        CheckAroundTile();
+                        if(settable[0]){
                         
-                        // 右
-                        if(clickedButton == mid_R){
-                            CheckAroundTile();
-                            if(settable[2]){
-                                //Debug.Log("Moved right middle");
-                                //Debug.Log("settable[2]"+settable[2]);
-                                direction = new Vector3(0.8f,0,0);
-                                player.GetComponent<MovementController>().transform.position += direction;
-                                player.GetComponent<MovementController>().UpdatePosition();
-                                resultTx="TurnEnd,"+"Right";
-                            }
-                            CheckAroundTile();
-                            
+                            //Debug.Log("Moved right up");
+                            //Debug.Log("settable[0]"+settable[0]);
+                            direction = new Vector3(0.4f,0.6f);
+                            player.GetComponent<MovementController>().transform.position += direction;
+                            player.GetComponent<MovementController>().UpdatePosition();
+                            resultTx="TurnEnd,"+"Rfront";
                         }
-
-                        // 右下
-                        if(clickedButton == down_R){
-                            CheckAroundTile();
-                            if(settable[4]){
-                                //Debug.Log("Moved right down");
-                                //Debug.Log("settable[4]"+settable[4]);
-                                direction = new Vector3(0.4f,-0.6f);
-                                player.GetComponent<MovementController>().transform.position += direction;
-                                player.GetComponent<MovementController>().UpdatePosition();
-                                resultTx="TurnEnd,"+"Rback";
-                            }
-                            CheckAroundTile();
-                                //Debug.Log("settable[4]"+settable[4]);
-                            
-                            
-                        }
-
-                        // 左上
-                        if(clickedButton == up_L){
-                            CheckAroundTile();
-                            if(settable[1]){
-                            // Debug.Log("Moved left up"); 
-                                //Debug.Log("settable[1]"+settable[1]);
-                                direction = new Vector3(-0.4f,0.6f);
-                                player.GetComponent<MovementController>().transform.position += direction;
-                                player.GetComponent<MovementController>().UpdatePosition();
-                                resultTx="TurnEnd,"+"Lfront";
-                            }
-                            CheckAroundTile();
-                                //Debug.Log("settable[1]"+settable[1]);
-                            
-                            
-                        }
-
-                        // 左
-                        if(clickedButton == mid_L){
-                            CheckAroundTile();
-                            if(settable[3]){
-                                //Debug.Log("Moved left middle");
-                                //Debug.Log("settable[3]"+settable[3]);
-                                direction = new Vector3(-0.8f,0,0);
-                                player.GetComponent<MovementController>().transform.position += direction;
-                                player.GetComponent<MovementController>().UpdatePosition();
-                                resultTx="TurnEnd,"+"Left";
-                            }
-                            CheckAroundTile();
-                        }
-
-                        // 左下
-                        if(clickedButton == down_L){
-                            CheckAroundTile();
-                            if(settable[5]){
-                                //Debug.Log("Moved left down");
-                            // Debug.Log("settable[5]"+settable[5]);
-                                direction = new Vector3(-0.4f,-0.6f);
-                                player.GetComponent<MovementController>().transform.position += direction;
-                                player.GetComponent<MovementController>().UpdatePosition();
-                                resultTx="TurnEnd,"+"Lback";
-                            }
-                            CheckAroundTile();
-                        }
-                    if(movable)
-                    {
-                    ws.Send(resultTx);
+                        CheckAroundTile();
+                        
                     }
                     
+                    // 右
+                    if(clickedButton == mid_R){
+                        CheckAroundTile();
+                        if(settable[2]){
+                            //Debug.Log("Moved right middle");
+                            //Debug.Log("settable[2]"+settable[2]);
+                            direction = new Vector3(0.8f,0,0);
+                            player.GetComponent<MovementController>().transform.position += direction;
+                            player.GetComponent<MovementController>().UpdatePosition();
+                            resultTx="TurnEnd,"+"Right";
+                        }
+                        CheckAroundTile();
+                        
+                    }
+
+                    // 右下
+                    if(clickedButton == down_R){
+                        CheckAroundTile();
+                        if(settable[4]){
+                            //Debug.Log("Moved right down");
+                            //Debug.Log("settable[4]"+settable[4]);
+                            direction = new Vector3(0.4f,-0.6f);
+                            player.GetComponent<MovementController>().transform.position += direction;
+                            player.GetComponent<MovementController>().UpdatePosition();
+                            resultTx="TurnEnd,"+"Rback";
+                        }
+                        CheckAroundTile();
+                            //Debug.Log("settable[4]"+settable[4]);
+                        
+                        
+                    }
+
+                    // 左上
+                    if(clickedButton == up_L){
+                        CheckAroundTile();
+                        if(settable[1]){
+                        // Debug.Log("Moved left up"); 
+                            //Debug.Log("settable[1]"+settable[1]);
+                            direction = new Vector3(-0.4f,0.6f);
+                            player.GetComponent<MovementController>().transform.position += direction;
+                            player.GetComponent<MovementController>().UpdatePosition();
+                            resultTx="TurnEnd,"+"Lfront";
+                        }
+                        CheckAroundTile();
+                            //Debug.Log("settable[1]"+settable[1]);
+                        
+                        
+                    }
+
+                    // 左
+                    if(clickedButton == mid_L){
+                        CheckAroundTile();
+                        if(settable[3]){
+                            //Debug.Log("Moved left middle");
+                            //Debug.Log("settable[3]"+settable[3]);
+                            direction = new Vector3(-0.8f,0,0);
+                            player.GetComponent<MovementController>().transform.position += direction;
+                            player.GetComponent<MovementController>().UpdatePosition();
+                            resultTx="TurnEnd,"+"Left";
+                        }
+                        CheckAroundTile();
+                    }
+
+                    // 左下
+                    if(clickedButton == down_L){
+                        CheckAroundTile();
+                        if(settable[5]){
+                            //Debug.Log("Moved left down");
+                            // Debug.Log("settable[5]"+settable[5]);
+                            direction = new Vector3(-0.4f,-0.6f);
+                            player.GetComponent<MovementController>().transform.position += direction;
+                            player.GetComponent<MovementController>().UpdatePosition();
+                            resultTx="TurnEnd,"+"Lback";
+                        }
+                        CheckAroundTile();
+                    }
+                    
+                    if(movable)
+                    {
+                        ws.Send(resultTx);
+                    }
                     else
                     {
                         ws.Send(resultTx+"Stop");
                     }
-                    
-                    }
-
+                    movable=false;
                 }
-                else
-                {
-                    ws.Send("cantMove");
-                }
-                
 
-                
             }
+            else if(count==0)
+            {
+                ws.Send("cantMove");
+                count++;
+            }
+            
         }
         
     }
@@ -228,9 +223,8 @@ public class ActControllerManager : MonoBehaviour
 
         public void ReceivTest(string message)
     {   
-        //text=message;
-        texts.Enqueue(message);
-        Debug.Log("OnMessage:"+message);        
+        text=message;
+        //Debug.Log(text);        
     }
 
 
