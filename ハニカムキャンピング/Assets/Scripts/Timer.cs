@@ -7,7 +7,7 @@ using WebSocketSharp ;
 
 public class Timer : MonoBehaviour
 {
-    private bool TurnFlag = false ;
+    public bool TurnFlag = false ;
     public WebSocket ws ;
     public string text="" ;
     private int playerNum =  0;
@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        var url = "ws://172.16.98.82:8080" ;
+        var url = "ws://localhost:8080";//"ws://172.16.98.82:8080" ;
         ws = new WebSocket(url) ;
         ws.Connect() ;
         ws.OnMessage += (sender , e) => TextWrite(e.Data) ;

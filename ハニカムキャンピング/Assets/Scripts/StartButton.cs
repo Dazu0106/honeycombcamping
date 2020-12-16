@@ -14,7 +14,7 @@ public class StartButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var url = "ws://172.16.98.82:8080" ;
+        var url = "ws://localhost:8080";//"ws://172.16.98.82:8080" ;
         ws = new WebSocket(url) ;
         ws.Connect() ;
         ws.OnMessage += (sender , e) => TitleReceive(e.Data) ;
@@ -35,7 +35,7 @@ public class StartButton : MonoBehaviour
     {
         //for(int i = 0 ; i < 4 ; i++)
         ws.Send("ready") ;
-        Button.SetActive(false) ;
+        //Button.SetActive(false) ;
     }
 
     public void TitleReceive(string message)

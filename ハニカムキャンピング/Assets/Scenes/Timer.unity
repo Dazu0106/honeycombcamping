@@ -421,10 +421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f82421b5d92064990e8d38a0aef576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnFlag: 1
+  TurnFlag: 0
   text: 
-  playerNum: 0
-  countdown: 10
   timeText: {fileID: 1567394876}
 --- !u!114 &1567394876
 MonoBehaviour:

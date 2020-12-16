@@ -23,7 +23,7 @@ public class Server : MonoBehaviour {
 
     void Start () {
         
-        var url = "ws://172.16.98.82:8080";//"ws://localhost:8080";
+        var url = "ws://localhost:8080";//"ws://172.16.98.82:8080";
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
