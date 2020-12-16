@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 public class ActControllerManager : MonoBehaviour
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     
     
     GameObject clickedButton;
@@ -19,6 +20,8 @@ public class ActControllerManager : MonoBehaviour
     private WebSocket ws;
     private Vector3 direction;
 =======
+=======
+>>>>>>> Stashed changes
     
     GameObject clickedButton;
     GameObject player;
@@ -27,6 +30,9 @@ public class ActControllerManager : MonoBehaviour
     public string objectName;
     public GameObject up_R, mid_R, down_R;
     public GameObject up_L, mid_L, down_L;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     private Tilemap hexTile;
     
@@ -41,12 +47,15 @@ public class ActControllerManager : MonoBehaviour
     void Start()
     {   
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         var url = "ws://localhost:8080";//"ws://172.16.98.82:8080";
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
 =======
+=======
+>>>>>>> Stashed changes
         player = GameObject.Find(objectName);
 >>>>>>> Stashed changes
         hexTile = player.GetComponent<MovementController>().Tilemap;

@@ -23,8 +23,12 @@ public class Server : MonoBehaviour {
 
     void Start () {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
         var url = "ws://localhost:8080";//"ws://172.16.98.82:8080";
+=======
+        var url = /*"ws://172.16.98.82:8080";*/"ws://localhost:8080";
+>>>>>>> Stashed changes
 =======
         var url = /*"ws://172.16.98.82:8080";*/"ws://localhost:8080";
 >>>>>>> Stashed changes
@@ -219,6 +223,7 @@ public class Server : MonoBehaviour {
                     
                 }
 
+<<<<<<< Updated upstream
                 if(text==(directionMsg[4]+",1")) 
                 {    
                     player[1].transform.position+=new Vector3(-0.8f,0,0);//プレイヤー1が左に移動
@@ -329,6 +334,8 @@ public class Server : MonoBehaviour {
                 }
             }
 =======
+=======
+>>>>>>> Stashed changes
         if(text==directionMsg[0]+",3") 
         {    
             player[2].transform.position+=new Vector3(0.4f,0.6f,0);//プレイヤー2が右上に移動
