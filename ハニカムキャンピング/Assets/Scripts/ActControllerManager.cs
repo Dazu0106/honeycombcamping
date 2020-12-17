@@ -154,7 +154,7 @@ public class ActControllerManager : MonoBehaviour
                         ws.Send(resultTx);
                         resultTx="";
                     }
-                    else
+                    else if(movable==false)
                     {
                         ws.Send(resultTx+"Stop");
                         resultTx="";
