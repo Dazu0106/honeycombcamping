@@ -16,7 +16,7 @@ public class ActControllerManager : MonoBehaviour
     private WebSocket ws;
     private Vector3 direction;
     private Tilemap hexTile;
-    string resultTx="";
+    private string resultTx="";
     private string text="";
     private bool[] settable = new bool[6];//右上、左上、右、左、右下、左下の順で6つ
     private bool movable;//移動可能か
@@ -152,10 +152,12 @@ public class ActControllerManager : MonoBehaviour
                     if(movable)
                     {
                         ws.Send(resultTx);
+                        resultTx="";
                     }
                     else
                     {
                         ws.Send(resultTx+"Stop");
+                        resultTx="";
                     }
                     movable=false;
                 }
