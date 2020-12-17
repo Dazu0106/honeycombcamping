@@ -8,9 +8,11 @@ using WebSocketSharp ;
 public class Timer : MonoBehaviour
 {
     private bool TurnFlag = false ;
+
+    public GameObject PlayerPlease ;
     public WebSocket ws ;
     public string text="" ;
-    private int playerNum =  0;
+    private string playerNum ;
     //カウントダウン
     private float countdown = 0.0f;
 
@@ -25,7 +27,7 @@ public class Timer : MonoBehaviour
         ws.Connect() ;
         ws.OnMessage += (sender , e) => TextWrite(e.Data) ;
 
-        
+        playerNum = PlayerPlease.name.Substring(6,1) ;
     }
 
     // Update is called once per frame
