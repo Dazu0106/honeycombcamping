@@ -18,7 +18,6 @@ public class ActControllerManager : MonoBehaviour
     private Tilemap hexTile;
     string resultTx="";
     private string text="";
-    private int count=0;
     private bool[] settable = new bool[6];//右上、左上、右、左、右下、左下の順で6つ
     private bool movable;//移動可能か
     private string playerNum;//プレイヤーの識別番号
@@ -162,10 +161,9 @@ public class ActControllerManager : MonoBehaviour
                 }
 
             }
-            else if(count==0)
+            else if(movable==false)
             {
                 ws.Send("cantMove");
-                count++;
             }
             
         }
