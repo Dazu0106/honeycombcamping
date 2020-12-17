@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WebSocketSharp;
@@ -9,6 +9,7 @@ public class wildbutton : MonoBehaviour
     public GameObject wildButton;
     public WebSocket ws;
     private bool TurnFlag=false;
+
     public string message;
     public string text = "";
     private string playerNum;
@@ -46,10 +47,13 @@ public class wildbutton : MonoBehaviour
         //Debug.Log(message) ;
         if(text == ("Start," + playerNum))
         {
+            wildButton.SetActive(true);
             TurnFlag = true ;
             text = "" ;
         }else {
             TurnFlag=false;
+            wildButton.SetActive(false);
+            
         }
     }
 }
