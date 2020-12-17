@@ -14,6 +14,9 @@ var order = [-1,-2,-3,-4] ;
 var rdy = [0,0,0,0] ;
 var wildCard = false;
 var CanMove = [1 , 1 , 1 , 1] ;
+var rdygo = 0;
+
+
 // 接続時に呼ばれる
 server.on('connection', ws => {
     /*
@@ -27,15 +30,15 @@ server.on('connection', ws => {
     ws.on('message' , message =>
     {
         console.log(message) ;
+        //4人の準備完了を待機
         if(message == "ready")
         {
-            var rdygo = 0;
             rdy[rdygo] = 1 ;
 
 
             if(rdy[3]==1)
             {
-                server.clients.forEach(server =>
+                server.clients.forEach(client =>
                     {
                         client.send("readygo") ;
                         //readygoをもらった一人のプレイヤーがorderを投げる
@@ -43,14 +46,26 @@ server.on('connection', ws => {
 
 
                     });
-                rdy = [0,0,0,0] ;
+                //rdy = [0,0,0,0] ;
+                //rdygo = 0 ;
             }
             else
             rdygo++ ;
         }
 
+        //ゲームセットを送り返してもらってゲーム終了のメッセージ
+        //プレイヤー0のリザルトチェック
+
         if(message == "GameSet")
         {
+            server.clients.forEach(client =>
+                {
+                    client.send("GameSet") ;
+                });
+        }
+        /*
+        {
+        
             server.clients.forEach(client =>
                 {
                     client.send("resultcheck" + resultNum ) ;
@@ -62,6 +77,9 @@ server.on('connection', ws => {
             var result = "" ;
             result = message.substr(6) //result35
 
+
+            if(resultNum < 4)
+            {
             server.clients.forEach(client =>
                 {
                     client.send(resultNum + result) ;
@@ -70,7 +88,9 @@ server.on('connection', ws => {
             server.clients.forEach(client =>{
                     client.send("resultcheck" + resultNum);
                 });
+            }
         }
+        */
 
         if(message == "order")
         {
@@ -100,7 +120,7 @@ server.on('connection', ws => {
                     while(CanMove[order[turnNumber]] == -1)
                     {
                         turnNumber++ ;
-                        if(turnNumber > 4) 
+                        if(turnNumber == 4) 
                         {
                             GameJudge = true ;
                             server.clients.forEach(client =>{
