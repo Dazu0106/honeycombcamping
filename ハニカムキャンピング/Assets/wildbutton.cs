@@ -8,7 +8,7 @@ public class wildbutton : MonoBehaviour
     public GameObject Bullet;
     public GameObject wildButton;
     public WebSocket ws;
-    private bool TurnFlag=false;
+    private bool WildFlag=false;
 
     public string message;
     public string text = "";
@@ -47,12 +47,10 @@ public class wildbutton : MonoBehaviour
         //Debug.Log(message) ;
         if(text == ("Start," + playerNum))
         {
-            wildButton.SetActive(true);
-            TurnFlag = true ;
+            WildFlag = true ;
             text = "" ;
         }else {
-            TurnFlag=false;
-            wildButton.SetActive(false);
+            WildFlag=false;
             
         }
     }
