@@ -33,7 +33,7 @@ public class wildbutton : MonoBehaviour
 
     public void Onclick()
     {
-            if(TurnFlag){
+            if(WildFlag){
             // Debug.Log("tamesi");
             ws.Send("wildC");
             // ws.Send("TurnEndRfront") ;
