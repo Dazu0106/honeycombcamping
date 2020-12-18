@@ -16,7 +16,7 @@ public class ActOrderUI : MonoBehaviour
      public GameObject p2 = null;
      public GameObject p3 = null;
      private GameObject[] arr;
-     public GameObject DisplayPlayer;
+     public GameObject DisplayPlayer = null;
      private Queue<string> texts = new Queue<string>();
 
     void Start()
@@ -27,12 +27,12 @@ public class ActOrderUI : MonoBehaviour
         ws.OnMessage += (sender , e) => MessageReceive(e.Data) ;
 
         // 各playerの初期位置を格納
-        pos0 = p0.transform.position;//GameObject.Find("p0").transform.position;
-        pos1 = p1.transform.position;//GameObject.Find("p1").transform.position;
-        pos2 = p2.transform.position;//GameObject.Find("p2").transform.position;
-        pos3 = p3.transform.position;//GameObject.Find("p3").transform.position;
+        pos0 = p0.transform.position;
+        pos1 = p1.transform.position;
+        pos2 = p2.transform.position;
+        pos3 = p3.transform.position;
 
-        arr = new GameObject[] {p0,p1,p2,p3} ;
+        arr = new GameObject[] {p0,p1,p2,p3};
 
     }
 
@@ -55,20 +55,25 @@ public class ActOrderUI : MonoBehaviour
             if(text.Contains("Start,")){
                 int TurnPlayer = int.Parse(text.Substring(6,1));
                 switch(TurnPlayer){
-                    case 0: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(229, 46, 46, 255);
-                            break;
-                    case 1: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(50, 137, 248, 255);
-                            break;
-                    case 2: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(0, 255, 4, 255);
-                            break;
-                    case 3: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(255, 241, 1, 255);
-                            break;
+                    case 0: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(255, 0, 0, 255);
+                            Debug.Log("ChangeRed");
+                            break; // 赤
+                    case 1: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(0, 0, 255, 255);
+                            Debug.Log("ChangeBlue");
+                            break; // 青
+                    case 2: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(0, 255, 0, 255);
+                            break; // 緑
+                    case 3: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(255, 255, 0, 255);
+                            break; // 黄
                     default: Debug.Log("DisplayColor Exception"); 
                             break;
                 }
             }
 
             // ゲームの初期化時のUI設定を書く?
+            if(text.Contains("GameSet")){
+                DisplayPlayer.GetComponent<Renderer>().material.color = Color.white;
+            }
         }
 
     }
