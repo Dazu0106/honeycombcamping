@@ -12,6 +12,8 @@ public class ActScoreManager : MonoBehaviour
     public GameObject score_object2=null;
     public GameObject score_object3=null;
     public GameObject score_object4=null;
+    public GameObject Panel ;
+
     public string text = "testtest";
     public string message = "testtest";
     public int[] player = new int[4];
@@ -19,6 +21,8 @@ public class ActScoreManager : MonoBehaviour
     public bool ScoreAdd ;
     // Start is called before the first frame update
     void Start(){
+
+        Panel.SetActive(false) ;
 
         var url = "ws://172.16.98.82:8080";
         ws = new WebSocket(url);
@@ -266,8 +270,11 @@ public class ActScoreManager : MonoBehaviour
         }
 
         if(text=="GameSet"){
+
+            Panel.SetActive(true) ;
             ExecuteSort();
             text="testtest";
+
         }
     }
 
@@ -304,5 +311,7 @@ public class ActScoreManager : MonoBehaviour
 
             ScoreAdd = false ;
         }
+
+
     }
 }
