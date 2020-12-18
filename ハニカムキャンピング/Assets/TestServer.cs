@@ -30,6 +30,11 @@ public class TestServer : MonoBehaviour {
             ws.Send("GameSet") ;
         }
 
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            ws.Send("GameRestart") ;
+        }
+
         if(Input.GetKeyDown(KeyCode.A))
         {
             ws.Send("order") ;
@@ -67,7 +72,7 @@ public class TestServer : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.U))
         {
-            ws.Send("TurnEndLfront") ;
+            ws.Send("TurnEndLfrontStop") ;
         }
 
         if(Input.GetKeyDown(KeyCode.R))
@@ -92,6 +97,12 @@ public class TestServer : MonoBehaviour {
             Thread.Sleep(1000);
             ws.Send("order") ;
             text = "" ;
+        }
+
+        if(text == "Gameset")
+        {
+            Thread.Sleep(10000) ;
+            ws.Send("GameRestart") ;
         }
     }
 

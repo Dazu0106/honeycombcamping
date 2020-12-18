@@ -31,6 +31,24 @@ server.on('connection', ws => {
     {
         console.log(message) ;
         //4人の準備完了を待機
+
+        if(message == "GameRestart")
+        {
+            order = [-1,-2,-3,-4] ;
+            CanMove = [1 , 1 , 1 , 1] ;
+            wildCard = false;
+            GameJudge = false ;
+            resultNum = 0 ;
+
+            
+            server.clients.forEach(client =>
+                {
+                    client.send("readygo") ;
+                    //readygoをもらった一人のプレイヤーがorderを投げる
+                });
+
+        }
+
         if(message == "ready")
         {
             rdy[rdygo] = 1 ;
