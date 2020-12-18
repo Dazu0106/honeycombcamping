@@ -4,6 +4,7 @@ using UnityEngine;
 using WebSocketSharp;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement ;
 
 public class ActScoreManager : MonoBehaviour
 {
@@ -312,6 +313,11 @@ public class ActScoreManager : MonoBehaviour
             ScoreAdd = false ;
         }
 
+
+        if(text == "GameRestart")
+        {
+            SceneManager.LoadScene("Scene_Game") ;
+        }
 
     }
 }
