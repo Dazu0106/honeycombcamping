@@ -15,9 +15,8 @@ public class ActOrderUI : MonoBehaviour
      public GameObject p1 = null;
      public GameObject p2 = null;
      public GameObject p3 = null;
-     public GameObject DisplayPlayer;
-
      private GameObject[] arr;
+     public GameObject DisplayPlayer;
      private Queue<string> texts = new Queue<string>();
 
     void Start()
@@ -33,9 +32,8 @@ public class ActOrderUI : MonoBehaviour
         pos2 = p2.transform.position;//GameObject.Find("p2").transform.position;
         pos3 = p3.transform.position;//GameObject.Find("p3").transform.position;
 
-        
         arr = new GameObject[] {p0,p1,p2,p3} ;
-        
+
     }
 
     // Update is called once per frame
@@ -55,20 +53,22 @@ public class ActOrderUI : MonoBehaviour
 
             // Startの後の数字に応じて DisplayPlayerの色を変えていく
             if(text.Contains("Start,")){
-                switch(text.Substring(6,1)){
-                    case 0: DisplayPlayer.GetComponent<Renderer>().material.Color = new Color(229, 46, 46, 255);
+                int TurnPlayer = int.Parse(text.Substring(6,1));
+                switch(TurnPlayer){
+                    case 0: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(229, 46, 46, 255);
                             break;
-                    case 1: DisplayPlayer.GetComponent<Renderer>().material.Color = new Color(50, 137, 248, 255);
+                    case 1: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(50, 137, 248, 255);
                             break;
-                    case 2: DisplayPlayer.GetComponent<Renderer>().material.Color = new Color(0, 255, 4, 255);
+                    case 2: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(0, 255, 4, 255);
                             break;
-                    case 3: DisplayPlayer.GetComponent<Renderer>().material.Color = new Color(255, 241, 1, 255);
+                    case 3: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(255, 241, 1, 255);
                             break;
-                    default: Debug.Log("DisplayColor Exception");
+                    default: Debug.Log("DisplayColor Exception"); 
+                            break;
                 }
             }
 
-            // ゲームの初期化自のUI設定を書く?
+            // ゲームの初期化時のUI設定を書く?
         }
 
     }
