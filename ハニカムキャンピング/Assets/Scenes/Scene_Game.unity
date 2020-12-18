@@ -5695,7 +5695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tilemap: {fileID: 733144189}
   dummyPlayer:
-  - {fileID: 1831242762}
+  - {fileID: 816386634}
   - {fileID: 1834063426}
   - {fileID: 155262939}
 --- !u!4 &1261990701
@@ -5847,7 +5847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05cc6f75188cca946869d989afa8d832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 816386634}
+  Bullet: {fileID: 1831242762}
   wildButton: {fileID: 1436295556}
   message: 
   text: 
@@ -6053,7 +6053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f82421b5d92064990e8d38a0aef576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPlease: {fileID: 816386634}
+  PlayerPlease: {fileID: 1831242762}
   text: 
   timeText: {fileID: 1567394876}
 --- !u!114 &1567394876
@@ -6307,7 +6307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae322494ac5ef34db468257a97d84ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 816386634}
+  player: {fileID: 1831242762}
   up_R: {fileID: 1057438199}
   mid_R: {fileID: 1852550612}
   down_R: {fileID: 1892391633}
