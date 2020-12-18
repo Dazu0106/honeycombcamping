@@ -17,11 +17,12 @@ public class Timer : MonoBehaviour
     private float countdown = 0.0f;
 
     //時間を表示するText型の変数
-    public Text timeText ;
+    public Text timeText ; 
 
 
     void Start()
     {
+
         var url = "ws://172.16.98.82:8080" ;
         ws = new WebSocket(url) ;
         ws.Connect() ;
