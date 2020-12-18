@@ -35,7 +35,7 @@ public class StartButton : MonoBehaviour
     {
         //for(int i = 0 ; i < 4 ; i++)
         ws.Send("ready") ;
-        //Button.SetActive(false) ;
+        Button.SetActive(false) ;
     }
 
     public void TitleReceive(string message)
