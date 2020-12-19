@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WebSocketSharp;
@@ -8,7 +8,8 @@ public class wildbutton : MonoBehaviour
     public GameObject Bullet;
     public GameObject wildButton;
     public WebSocket ws;
-    private bool TurnFlag=false;
+    private bool WildFlag=false;
+
     public string message;
     public string text = "";
     private string playerNum;
@@ -32,7 +33,7 @@ public class wildbutton : MonoBehaviour
 
     public void Onclick()
     {
-            if(TurnFlag){
+            if(WildFlag){
             // Debug.Log("tamesi");
             ws.Send("wildC");
             // ws.Send("TurnEndRfront") ;
@@ -46,10 +47,11 @@ public class wildbutton : MonoBehaviour
         //Debug.Log(message) ;
         if(text == ("Start," + playerNum))
         {
-            TurnFlag = true ;
+            WildFlag = true ;
             text = "" ;
         }else {
-            TurnFlag=false;
+            WildFlag=false;
+            
         }
     }
 }

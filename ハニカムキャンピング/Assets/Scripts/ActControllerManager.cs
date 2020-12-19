@@ -35,7 +35,13 @@ public class ActControllerManager : MonoBehaviour
 =======
 >>>>>>> Stashed changes
     private Tilemap hexTile;
+<<<<<<< HEAD
     
+=======
+    private string resultTx="";
+    private string text="";
+    private int count=0;
+>>>>>>> d7ec1c27a40e07a63f005de50b2bb556471d1f25
     private bool[] settable = new bool[6];//右上、左上、右、左、右下、左下の順で6つ
     private bool movable;//移動可能か
     private string playerNum;//プレイヤーの識別番号
@@ -178,6 +184,7 @@ public class ActControllerManager : MonoBehaviour
                             }
                             CheckAroundTile();
                         }
+<<<<<<< HEAD
                         
                         if(movable)
                         {
@@ -188,10 +195,25 @@ public class ActControllerManager : MonoBehaviour
                             ws.Send(resultTx+"Stop");
                         }
                         movable=false;
+=======
+                        CheckAroundTile();
+                    }
+                    
+                    if(movable)
+                    {
+                        ws.Send(resultTx);
+                        resultTx="";
+                    }
+                    else if(movable==false)
+                    {
+                        ws.Send(resultTx+"Stop");
+                        resultTx="";
+                        text = "" ;
+>>>>>>> d7ec1c27a40e07a63f005de50b2bb556471d1f25
                     }
                 }
             }
-            else if(count==0)
+            else if(movable==false&&count==0)
             {
                 ws.Send("cantMove");
                 count++;
