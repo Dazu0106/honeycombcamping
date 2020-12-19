@@ -166,8 +166,13 @@ server.on('connection', ws => {
         {
             CanMove[order[turnNumber]] = -1 ;
             turnNumber++ ;
+            while(CanMove[order[turnNumber]] == -1)
+            {
+                turnNumber++ ;
+            }
                     if(turnNumber < 4 )
                     {
+                        
                         server.clients.forEach(client =>{
                             client.send("Start," + order[turnNumber]) ;
                         });
@@ -238,7 +243,15 @@ server.on('connection', ws => {
                         }) ;
                         turnNumber++ ;
                     }
+
+                    while(CanMove[order[turnNumber]] == -1)
+                    {
+                        turnNumber++ ;
+                    }
+
+
                     if(turnNumber < 4)  //ターンが一周してないとき
+
                         server.clients.forEach(client =>{
                             client.send("Start," + order[turnNumber]) ;
                         });
