@@ -29,10 +29,10 @@ public class ActScoreManager : MonoBehaviour
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender , e) => ReceivTest(e.Data) ;
-        player[0]=0;//プレイヤーの初期値を0に設定       
-        player[1]=0;
-        player[2]=0;
-        player[3]=0;
+        player[0]=1;//プレイヤーの初期値を1に設定       
+        player[1]=1;
+        player[2]=1;
+        player[3]=1;
 
         DirectionCheck[0] = "Rfront" ;
         DirectionCheck[1] = "Right" ;
