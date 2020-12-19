@@ -277,6 +277,11 @@ public class ActScoreManager : MonoBehaviour
             text="testtest";
 
         }
+        
+        if(text == "GameRestart")
+        {
+            SceneManager.LoadScene("Scene_title") ;
+        }
     }
 
     public void ReceivTest(string message)
@@ -311,12 +316,6 @@ public class ActScoreManager : MonoBehaviour
             }
 
             ScoreAdd = false ;
-        }
-
-
-        if(text == "GameRestart")
-        {
-            SceneManager.LoadScene("Scene_title") ;
         }
 
     }
