@@ -316,7 +316,7 @@ public class ActScoreManager : MonoBehaviour
 
         if(text == "GameRestart")
         {
-            SceneManager.LoadScene("Scene_Game") ;
+            SceneManager.LoadScene("Scene_title") ;
         }
 
     }
