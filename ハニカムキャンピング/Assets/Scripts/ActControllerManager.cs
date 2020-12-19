@@ -159,6 +159,7 @@ public class ActControllerManager : MonoBehaviour
                     {
                         ws.Send(resultTx+"Stop");
                         resultTx="";
+                        text = "" ;
                     }
                     movable=false;
                 }
