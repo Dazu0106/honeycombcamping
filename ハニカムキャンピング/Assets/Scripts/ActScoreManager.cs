@@ -75,190 +75,190 @@ public class ActScoreManager : MonoBehaviour
 
         if(e==player[3]){　　　　//256行目まででソートした値とプレイヤー名を一致させる
             player[3]=e;
-            score_text1.text = "Red "+player[3];
+            score_text1.text = "マグマゴーレム "+player[3];
             Debug.Log(player[3]);
             if(f==player[2]){
                 player[2]=f;
-                score_text2.text = "Blue "+player[2];
+                score_text2.text = "スケルトンパイレーツ "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=h;
-                    score_text3.text = "Green "+player[1];
-                    score_text4.text = "Yellow "+player[0];
+                    score_text3.text = "アイススピリット "+player[1];
+                    score_text4.text = "サンドサラマンダー "+player[0];
                 }else if(h==player[1]){
                     player[1]=h;
                     player[0]=g;
-                    score_text3.text = "Yellow "+player[1];
-                    score_text4.text = "Green "+player[0];
+                    score_text3.text = "サンドサラマンダー "+player[1];
+                    score_text4.text = "アイススピリット "+player[0];
                 }
             }else if(g==player[2]){
                 player[2]=g;
-                score_text2.text = "Green "+player[2];
+                score_text2.text = "アイススピリット "+player[2];
                 if(h==player[1]){
                     player[1]=h;
                     player[0]=f;
-                    score_text3.text = "Yellow "+player[1];
-                    score_text4.text = "Blue "+player[0];
+                    score_text3.text = "サンドサラマンダー "+player[1];
+                    score_text4.text = "スケルトンパイレーツ "+player[0];
                 }else if(f==player[1]){
                     player[0]=h;
                     player[1]=f;
-                    score_text3.text = "Blue "+player[1];
-                    score_text4.text = "Yellow "+player[0];
+                    score_text3.text = "スケルトンパイレーツ "+player[1];
+                    score_text4.text = "サンドサラマンダー "+player[0];
                 }
             }else if(h==player[2]){
                 player[2]=h;
-                score_text2.text = "Yellow "+player[2];
+                score_text2.text = "サンドサラマンダー "+player[2];
                 if(f==player[1]){
                     player[1]=f;
                     player[0]=g;
-                    score_text3.text = "Blue "+player[1];
-                    score_text4.text = "Green "+player[0];
+                    score_text3.text = "スケルトンパイレーツ "+player[1];
+                    score_text4.text = "アイススピリット "+player[0];
                 }else if(g==player[1]){
                     player[1]=g;
                     player[0]=f;
-                    score_text3.text = "Green "+player[1];
-                    score_text4.text = "Blue "+player[0];
+                    score_text3.text = "アイススピリット "+player[1];
+                    score_text4.text = "スケルトンパイレーツ "+player[0];
                 }
             }
         }else if(f==player[3]){
             player[3]=f;
-            score_text1.text = "Blue "+player[3];
+            score_text1.text = "スケルトンパイレーツ "+player[3];
             Debug.Log(player[3]);
             if(g==player[2]){
                 player[2]=g;
-                score_text2.text = "Green "+player[2];
+                score_text2.text = "アイススピリット "+player[2];
                 if(h==player[1]){
                     player[1]=h;
                     player[0]=e;
-                    score_text3.text = "Yellow "+player[1];
-                    score_text4.text = "Red "+player[0];
+                    score_text3.text = "サンドサラマンダー "+player[1];
+                    score_text4.text = "マグマゴーレム "+player[0];
                 }else if(e==player[1]){
                     player[1]=e;
                     player[0]=h;
-                    score_text3.text = "Red "+player[1];
-                    score_text4.text = "Yellow "+player[0];
+                    score_text3.text = "マグマゴーレム "+player[1];
+                    score_text4.text = "サンドサラマンダー "+player[0];
                 }
             }else if(h==player[2]){
                 player[2]=h;
-                score_text2.text = "Yellow "+player[2];
+                score_text2.text = "サンドサラマンダー "+player[2];
                 if(e==player[1]){
                     player[1]=e;
                     player[0]=g;
-                    score_text3.text = "Red "+player[1];
-                    score_text4.text = "Green "+player[0];
+                    score_text3.text = "マグマゴーレム "+player[1];
+                    score_text4.text = "アイススピリット "+player[0];
                 }else if(g==player[1]){
                     player[0]=e;
                     player[1]=g;
-                    score_text3.text = "Green "+player[1];
-                    score_text4.text = "Red "+player[0];
+                    score_text3.text = "アイススピリット "+player[1];
+                    score_text4.text = "マグマゴーレム "+player[0];
                 }
             }else if(e==player[2]){
                 player[2]=e;
-                score_text2.text = "Red "+player[2];
+                score_text2.text = "マグマゴーレム "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=h;
-                    score_text3.text = "Green "+player[1];
-                    score_text4.text = "Yellow "+player[0];
+                    score_text3.text = "アイススピリット "+player[1];
+                    score_text4.text = "サンドサラマンダー "+player[0];
                 }else if(h==player[1]){
                     player[1]=h;
                     player[0]=g;
-                    score_text3.text = "Yellow "+player[1];
-                    score_text4.text = "Green "+player[0];
+                    score_text3.text = "サンドサラマンダー "+player[1];
+                    score_text4.text = "アイススピリット "+player[0];
                 }
             }
         }else if(g==player[3]){
             player[3]=g;
-            score_text1.text = "Green "+player[3];
+            score_text1.text = "アイススピリット "+player[3];
             Debug.Log(player[3]);
             if(f==player[2]){
                 player[2]=f;
-                score_text2.text = "Blue "+player[2];
+                score_text2.text = "スケルトンパイレーツ "+player[2];
                 if(e==player[1]){
                     player[1]=e;
                     player[0]=h;
-                    score_text3.text = "Red "+player[1];
-                    score_text4.text = "Yellow "+player[0];
+                    score_text3.text = "マグマゴーレム "+player[1];
+                    score_text4.text = "サンドサラマンダー "+player[0];
                 }else if(h==player[1]){
                     player[0]=e;
                     player[1]=h;
-                    score_text3.text = "Yellow "+player[1];
-                    score_text4.text = "Red "+player[0];
+                    score_text3.text = "サンドサラマンダー "+player[1];
+                    score_text4.text = "マグマゴーレム "+player[0];
                 }
             }else if(e==player[2]){
                 player[2]=e;
-                score_text2.text = "Red "+player[2];
+                score_text2.text = "マグマゴーレム "+player[2];
                 if(h==player[1]){
                     player[1]=h;
                     player[0]=f;
-                    score_text3.text = "Yellow "+player[1];
-                    score_text4.text = "Blue "+player[0];
+                    score_text3.text = "サンドサラマンダー "+player[1];
+                    score_text4.text = "スケルトンパイレーツ "+player[0];
                 }else if(f==player[1]){
                     player[0]=h;
                     player[1]=f;
-                    score_text3.text = "Blue "+player[1];
-                    score_text4.text = "Yellow "+player[0];
+                    score_text3.text = "スケルトンパイレーツ "+player[1];
+                    score_text4.text = "サンドサラマンダー "+player[0];
                 }
             }else if(h==player[2]){
                 player[2]=h;
-                score_text2.text = "Yellow "+player[2];
+                score_text2.text = "サンドサラマンダー "+player[2];
                 if(f==player[1]){
                     player[1]=f;
                     player[0]=e;
-                    score_text3.text = "Blue "+player[1];
-                    score_text4.text = "Red "+player[0];
+                    score_text3.text = "スケルトンパイレーツ "+player[1];
+                    score_text4.text = "マグマゴーレム "+player[0];
                 }else if(e==player[1]){
                     player[1]=e;
                     player[0]=f;
-                    score_text3.text = "Red "+player[1];
-                    score_text4.text = "Blue "+player[0];
+                    score_text3.text = "マグマゴーレム "+player[1];
+                    score_text4.text = "スケルトンパイレーツ "+player[0];
                 }
             }
         }else if(h==player[3]){
             player[3]=h;
-            score_text1.text = "Yellow "+player[3];
+            score_text1.text = "サンドサラマンダー "+player[3];
             Debug.Log(player[3]);
             if(e==player[2]){
                 player[2]=e;
-                score_text2.text = "Red "+player[2];
+                score_text2.text = "マグマゴーレム "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=f;
-                    score_text3.text = "Green "+player[1];
-                    score_text4.text = "Blue "+player[0];
+                    score_text3.text = "アイススピリット "+player[1];
+                    score_text4.text = "スケルトンパイレーツ "+player[0];
                 }else if(f==player[1]){
                     player[0]=g;
                     player[1]=f;
-                    score_text3.text = "Blue "+player[1];
-                    score_text4.text = "Green "+player[0];
+                    score_text3.text = "スケルトンパイレーツ "+player[1];
+                    score_text4.text = "アイススピリット "+player[0];
                 }
             }else if(f==player[2]){
                 player[2]=f;
-                score_text2.text = "Blue "+player[2];
+                score_text2.text = "スケルトンパイレーツ "+player[2];
                 if(g==player[1]){
                     player[1]=g;
                     player[0]=e;
-                    score_text3.text = "Green "+player[1];
-                    score_text4.text = "Red "+player[0];
+                    score_text3.text = "アイススピリット "+player[1];
+                    score_text4.text = "マグマゴーレム "+player[0];
                 }else if(e==player[1]){
                     player[0]=g;
                     player[1]=e;
-                    score_text3.text = "Red "+player[1];
-                    score_text4.text = "Green "+player[0];
+                    score_text3.text = "マグマゴーレム "+player[1];
+                    score_text4.text = "アイススピリット "+player[0];
                 }
             }else if(g==player[2]){
                 player[2]=g;
-                score_text2.text = "Green "+player[2];
+                score_text2.text = "アイススピリット "+player[2];
                 if(f==player[1]){
                     player[1]=f;
                     player[0]=e;
-                    score_text3.text = "Blue "+player[1];
-                    score_text4.text = "Red "+player[0];
+                    score_text3.text = "スケルトンパイレーツ "+player[1];
+                    score_text4.text = "マグマゴーレム "+player[0];
                 }else if(e==player[1]){
                     player[1]=e;
                     player[0]=f;
-                    score_text3.text = "Red "+player[1];
-                    score_text4.text = "Blue "+player[0];
+                    score_text3.text = "マグマゴーレム "+player[1];
+                    score_text4.text = "スケルトンパイレーツ "+player[0];
                 }
             }
         }
