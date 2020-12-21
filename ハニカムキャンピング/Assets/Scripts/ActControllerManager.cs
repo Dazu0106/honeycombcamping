@@ -13,7 +13,7 @@ public class ActControllerManager : MonoBehaviour
     public GameObject player;
     public GameObject up_R, mid_R, down_R;
     public GameObject up_L, mid_L, down_L;
-    public TileBase[] playMap=new TileBase[2];//playmapの移動可能な初期タイルの数
+    public TileBase[] playMap;//playmapの移動可能な初期タイルの数
     private WebSocket ws;
     private Vector3 direction;
     private Tilemap hexTile;
@@ -36,7 +36,6 @@ public class ActControllerManager : MonoBehaviour
         
         hexTile = player.GetComponent<MovementController>().Tilemap;
         playerNum = player.name.Substring(6,1);//Bulletの識別番号を取得
-        CheckAroundTile();
         //Debug.Log(playerNum);
         movable = false;
     }
@@ -199,7 +198,7 @@ public class ActControllerManager : MonoBehaviour
             movableTile[i]=hexTile.GetTile(pos[i]);
             settable[i]=false;
             
-            if(movableTile[i]==(playMap[0]||playMap[1]))//タイルが移動可能なものかをチェック
+            if(movableTile[i]==playMap[0])//タイルが移動可能なものかをチェック
                 {
                     settable[i]=true;
                 }
