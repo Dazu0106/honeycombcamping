@@ -34,18 +34,27 @@ server.on('connection', ws => {
 
         if(message == "GameRestart")
         {
+            turnNumber = 0 ;
+            rdygo =  0 ;
             order = [-1,-2,-3,-4] ;
             CanMove = [1 , 1 , 1 , 1] ;
+            rdy = [0 , 0 , 0, 0] ;
             wildCard = false;
             GameJudge = false ;
             resultNum = 0 ;
 
-            
+            server.clients.forEach(client =>
+                {
+                    client.send("GameRestart") ;
+                });
+
+            /*
             server.clients.forEach(client =>
                 {
                     client.send("readygo") ;
                     //readygoをもらった一人のプレイヤーがorderを投げる
                 });
+            */
 
         }
 
@@ -166,6 +175,12 @@ server.on('connection', ws => {
         {
             CanMove[order[turnNumber]] = -1 ;
             turnNumber++ ;
+
+            for(var i = 0 ; i < 4 ; i++)
+            {
+                console.log(CanMove[i]) ;
+            }
+
             while(CanMove[order[turnNumber]] == -1)
             {
                 turnNumber++ ;

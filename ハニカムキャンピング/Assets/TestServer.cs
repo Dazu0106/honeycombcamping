@@ -99,7 +99,7 @@ public class TestServer : MonoBehaviour {
             text = "" ;
         }
 
-        if(text == "Gameset")
+        if(text == "GameSet")
         {
             Thread.Sleep(10000) ;
             ws.Send("GameRestart") ;
