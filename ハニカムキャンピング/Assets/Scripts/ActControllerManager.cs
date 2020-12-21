@@ -13,6 +13,7 @@ public class ActControllerManager : MonoBehaviour
     public GameObject player;
     public GameObject up_R, mid_R, down_R;
     public GameObject up_L, mid_L, down_L;
+    public TileBase[] playMap=new TileBase[2];//playmapの移動可能な初期タイルの数
     private WebSocket ws;
     private Vector3 direction;
     private Tilemap hexTile;
@@ -35,6 +36,7 @@ public class ActControllerManager : MonoBehaviour
         
         hexTile = player.GetComponent<MovementController>().Tilemap;
         playerNum = player.name.Substring(6,1);//Bulletの識別番号を取得
+        CheckAroundTile();
         //Debug.Log(playerNum);
         movable = false;
     }
@@ -178,10 +180,10 @@ public class ActControllerManager : MonoBehaviour
     {   
         Vector3Int[] pos = new Vector3Int[6];
         TileBase[] movableTile = new TileBase[6];
-        Color[] poscolor = new Color[6] ;
-        Vector3Int unmovableTilePos= hexTile.WorldToCell(new Vector3(-6.35f,-4.8f));
+        //Color[] poscolor = new Color[6] ;
+        //Vector3Int unmovableTilePos= hexTile.WorldToCell(new Vector3(-6.35f,-4.8f));
 
-        TileBase unmovableTile =hexTile.GetTile(unmovableTilePos);
+        //TileBase unmovableTile =hexTile.GetTile(unmovableTilePos);
         int length = 6;
          pos[0] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(0.4f,0.6f)); //右斜め上のタイルの色を取得
          pos[1] = hexTile.WorldToCell(player.GetComponent<MovementController>().transform.position+new Vector3(-0.4f,0.6f));//左斜め上
@@ -193,18 +195,23 @@ public class ActControllerManager : MonoBehaviour
         for (int i = 0; i < length; i++)
         {   
             //Debug.Log("pos"+i+"="+pos[i]);
-            poscolor[i]=hexTile.GetColor(pos[i]);
+            //poscolor[i]=hexTile.GetColor(pos[i]);
             movableTile[i]=hexTile.GetTile(pos[i]);
             settable[i]=false;
+            
+            if(movableTile[i]==(playMap[0]||playMap[1]))//タイルが移動可能なものかをチェック
+                {
+                    settable[i]=true;
+                }
             //Debug.Log("movableTile"+i+"="+hexTile.GetTile(pos[i]));
-            if(poscolor[i]==Color.white)//タイルが白いかをチェック
+            /*if(poscolor[i]==Color.white)//タイルが白いかをチェック
             {
                 if(movableTile[i]!=unmovableTile)//タイルが移動可能なものかをチェック
                 {
                     settable[i]=true;
                 }
                 //Debug.Log("settable"+i+"="+settable[i]);
-            }
+            }*/
         }
         
 
