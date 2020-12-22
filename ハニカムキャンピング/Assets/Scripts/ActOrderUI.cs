@@ -8,7 +8,7 @@ public class ActOrderUI : MonoBehaviour
 {
      public WebSocket ws;
      private Vector3 pos0, pos1, pos2, pos3;
-     //public GameObject p0, p1, p2, p3;
+     public GameObject tp0, tp1, tp2, tp3;
      //public GameObject[] arr = new GameObject[] {p0, p1, p2, p3};
      
      public GameObject p0 = null;
@@ -34,6 +34,11 @@ public class ActOrderUI : MonoBehaviour
 
         arr = new GameObject[] {p0,p1,p2,p3};
 
+        tp0.SetActive(false);
+        tp1.SetActive(false);
+        tp2.SetActive(false);
+        tp3.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -55,24 +60,37 @@ public class ActOrderUI : MonoBehaviour
             if(text.Contains("Start,")){
                 int TurnPlayer = int.Parse(text.Substring(6,1));
                 switch(TurnPlayer){
-                    case 0: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(255, 0, 0, 255);
-                            Debug.Log("ChangeRed");
-                            break; // 赤
-                    case 1: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(0, 0, 255, 255);
-                            Debug.Log("ChangeBlue");
-                            break; // 青
-                    case 2: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(0, 255, 0, 255);
-                            break; // 緑
-                    case 3: DisplayPlayer.GetComponent<Renderer>().material.color = new Color(255, 255, 0, 255);
-                            break; // 黄
-                    default: Debug.Log("DisplayColor Exception"); 
+                    case 0: tp0.SetActive(true);
+                            tp1.SetActive(false);
+                            tp2.SetActive(false);
+                            tp3.SetActive(false);
+                            break; // 赤(Magma_Golem)
+                    case 1: tp0.SetActive(false);
+                            tp1.SetActive(true);
+                            tp2.SetActive(false);
+                            tp3.SetActive(false);
+                            break; // 青(Skelton_Pirate)
+                    case 2: tp0.SetActive(false);
+                            tp1.SetActive(false);
+                            tp2.SetActive(true);
+                            tp3.SetActive(false);
+                            break; // 緑(Floating_Ice)
+                    case 3: tp0.SetActive(false);
+                            tp1.SetActive(false);
+                            tp2.SetActive(false);
+                            tp3.SetActive(true);
+                            break; // 黄(Armored Salamander)
+                    default: Debug.Log("DisplayPlayer Exception"); 
                             break;
                 }
             }
 
             // ゲームの初期化時のUI設定を書く?
             if(text.Contains("GameSet")){
-                DisplayPlayer.GetComponent<Renderer>().material.color = Color.white;
+                tp0.SetActive(false);
+                tp1.SetActive(false);
+                tp2.SetActive(false);
+                tp3.SetActive(false);
             }
         }
 
